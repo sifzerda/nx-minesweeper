@@ -24,3 +24,56 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* custom stylers */
+
+.glitch-text {
+  position: relative;
+  color: white;
+  text-shadow:
+    -2px 0 #06b6d4,
+    2px 0 #2563eb,
+    0 0 8px rgba(34, 211, 238, 0.8),
+    0 0 20px rgba(59, 130, 246, 0.5),
+    0 0 35px rgba(34, 211, 238, 0.25);
+  animation: flicker 3s infinite alternate;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  2% {
+    opacity: 0.85;
+  }
+  4% {
+    opacity: 1;
+  }
+  8% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+body {
+  font-family: var(--font-space-mono);
+  background: black;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 100% 3px, 3px 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-cormorant);
+}
