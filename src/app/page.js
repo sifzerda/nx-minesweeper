@@ -1,6 +1,7 @@
 
 "use client";
 
+import Minesweeper from "../../components/Minesweeper";
 import { useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -50,44 +51,9 @@ export default function HomePage() {
       </div>
 
       {/* Header */}
-      <header className="relative z-20 overflow-hidden border-b border-cyan-500/20 bg-black/80 backdrop-blur-xl">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.06)_1px,transparent_1px)] bg-[size:60px_60px] opacity-40" />
 
-        <div className="absolute left-0 top-0 h-full w-1 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.9)]" />
-        <div className="absolute right-0 top-0 h-full w-1 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.9)]" />
 
-        <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-          <div className="flex items-center gap-5">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-500/10 shadow-[0_0_25px_rgba(34,211,238,0.35)]">
-              <div className="h-6 w-6 rounded-full bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.9)]" />
-            </div>
-
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.5em] text-cyan-400">
-                Neural Interface Active
-              </p>
-              <h2 className="mt-1 text-3xl font-bold uppercase tracking-[0.25em] text-white glitch-text">
-                Minesweeper.exe
-              </h2>
-            </div>
-          </div>
-
-          <nav className="hidden items-center gap-4 md:flex">
-            {["Dashboard", "Sessions", "Leaderboard", "Archive"].map(
-              (item) => (
-                <a
-                  key={item}
-                  href="#"
-                  className="group relative overflow-hidden border border-cyan-500/20 bg-zinc-900/60 px-5 py-3 font-mono text-xs uppercase tracking-[0.3em] text-zinc-400 transition duration-300 hover:border-cyan-400/50 hover:text-cyan-300 hover:shadow-[0_0_20px_rgba(34,211,238,0.25)]"
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 opacity-0 transition group-hover:opacity-100" />
-                  <span className="relative z-10">{item}</span>
-                </a>
-              )
-            )}
-          </nav>
-        </div>
-      </header>
+<Minesweeper />
 
       {/* Main */}
       <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-16">
@@ -167,31 +133,7 @@ export default function HomePage() {
       </div>
 
       {/* Footer */}
-      <footer className="relative z-20 overflow-hidden border-t border-cyan-500/20 bg-black/80 backdrop-blur-xl">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.05)_1px,transparent_1px)] bg-[size:50px_50px] opacity-30" />
 
-        <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-8 md:flex-row">
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.45em] text-cyan-500">
-              Digital Archive Node
-            </p>
-            <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-500">
-              Built with Next.js, layered neon gradients, terminal grids,
-              glitch typography, and cinematic UI motion.
-            </p>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <div className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.3em] text-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.25)]">
-              Signal Stable
-            </div>
-
-            <div className="rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.3em] text-blue-300 shadow-[0_0_18px_rgba(59,130,246,0.25)]">
-              Version 01.98
-            </div>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
