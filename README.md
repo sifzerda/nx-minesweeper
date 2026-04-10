@@ -39,3 +39,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 
 // Connected to neon-green Vercel db
+
+// Add a score/user model to prisma schema which allows players to submit score without registering as long as they leave a name/ref to display on scoreboard, link score + time + name/ref 
