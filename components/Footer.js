@@ -12,8 +12,7 @@ export default function Footer() {
             Digital Archive Node
           </p>
           <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-500">
-            Built with Next.js, layered neon gradients, terminal grids,
-            glitch typography, and cinematic UI motion.
+            Built with Next.js.
           </p>
         </div>
 

@@ -1,29 +1,8 @@
 "use client";
 
 import Game from "../../components/Minesweeper2";
-import { useEffect, useState } from "react";
 
 export default function HomePage() {
-  const [time, setTime] = useState(65);
-  const [score, setScore] = useState(730);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime((prev) => (prev > 0 ? prev - 1 : 65));
-      setScore((prev) => prev + Math.floor(Math.random() * 3));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const grid = [
-    ["", "", "", "", "", "", "", "", "1", "1"],
-    ["", "", "", "", "", "1", "1", "2", "2", "🚩"],
-    ["", "", "1", "1", "1", "1", "🚩", "2", "🚩", "2"],
-    ["", "", "", "1", "", "1", "2", "2", "2", "1"],
-    ["", "", "", "", "", "", "", "", "", ""],
-  ];
-
   return (
     <main className="relative overflow-hidden bg-black text-white">
       {/* Background */}
@@ -39,19 +18,11 @@ export default function HomePage() {
         <div className="absolute inset-0 opacity-[0.04] mix-blend-screen">
           <div className="h-full w-full bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.08)_3px)]" />
         </div>
-
-        <div className="absolute left-3 top-3 sm:left-8 sm:top-8 rounded border border-cyan-500/30 bg-black/70 px-2 py-1 sm:px-4 sm:py-2 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.25)]">
-          root@neural-core:~
-        </div>
-
-        <div className="absolute right-3 top-3 sm:right-8 sm:top-8 rounded border border-emerald-500/30 bg-black/70 px-2 py-1 sm:px-4 sm:py-2 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.35em] text-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.25)]">
-          secure channel online
-        </div>
       </div>
 
       {/* Main */}
-      <div className="relative z-10 flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:min-h-screen">
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-16 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-4 sm:p-6 lg:p-10 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
+      <div className="relative z-10 flex items-center justify-center px-1 py-1 sm:px-4 sm:py-12">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-16 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-5 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
 
           <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
@@ -70,14 +41,29 @@ export default function HomePage() {
             </div>
 
             <Game />
-
           </div>
 
           {/* Text */}
           <div className="relative flex-1 overflow-hidden text-center lg:text-right w-full">
-            <div className="mb-6 sm:mb-8 inline-flex items-center gap-3 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-2 sm:px-5 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.4em] text-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.15)]">
-              <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
-              network connected
+
+            {/* STATUS CLUSTER (updated lights) */}
+            <div className="mb-6 sm:mb-8 inline-flex flex-col items-center lg:items-end gap-2">
+
+              <div className="inline-flex items-center gap-3 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-2 sm:px-5 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.4em] text-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.15)]">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
+                network connected
+              </div>
+
+              {/* ROOT — ORANGE */}
+              <div className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.35em] text-orange-400 drop-shadow-[0_0_10px_rgba(251,146,60,0.9)]">
+                root@neural-core
+              </div>
+
+              {/* SECURE CHANNEL — BLUE */}
+              <div className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.35em]">
+                secure channel <span className=" text-blue-400 drop-shadow-[0_0_12px_rgba(59,130,246,0.9)]">online</span>
+              </div>
+
             </div>
 
             <div className="absolute right-0 top-0 hidden lg:block h-[2px] w-40 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.9)]" />
@@ -99,7 +85,6 @@ export default function HomePage() {
               <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[4.5rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
                 protocol
               </h1>
-
             </div>
           </div>
         </div>
@@ -107,4 +92,3 @@ export default function HomePage() {
     </main>
   );
 }
-
