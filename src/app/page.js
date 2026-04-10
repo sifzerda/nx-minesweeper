@@ -69,16 +69,6 @@ export default function HomePage() {
               terminal://minesweeper_protocol
             </div>
 
-            <div className="relative z-10 mb-4 sm:mb-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-              <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center">
-                Time: {time}
-              </div>
-
-              <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center">
-                Score: {score}
-              </div>
-            </div>
-
             <Game />
 
           </div>
@@ -98,15 +88,15 @@ export default function HomePage() {
                 interface online
               </p>
 
-              <h1 className="glitch-text text-[4.5rem] lg:text-[3.1rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
+              <h1 className="glitch-text text-[4.5rem] lg:text-[4.6rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
                 cybernetic
               </h1>
 
-              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[4.5rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
                 terminal
               </h1>
 
-              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[4.5rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
                 protocol
               </h1>
 

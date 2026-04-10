@@ -38,12 +38,32 @@ const generateGrid = (rows, cols, mines) => {
 export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
   const [grid, setGrid] = useState(generateGrid(rows, cols, mines));
   const [gameOver, setGameOver] = useState(false);
+  const [time, setTime] = useState(0);
+  const [timerActive, setTimerActive] = useState(false);
+  const [score, setScore] = useState(0);
+  const [flags, setFlags] = useState(0);
+
+  useEffect(() => {
+    let interval;
+
+    if (timerActive && !gameOver) {
+      interval = setInterval(() => {
+        setTime((t) => t + 1);
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [timerActive, gameOver]);
 
   const reveal = (r, c) => {
+    if (!timerActive) setTimerActive(true);
     if (gameOver || grid[r][c].revealed || grid[r][c].flagged) return;
 
     const newGrid = grid.map((row) => row.map((cell) => ({ ...cell })));
     newGrid[r][c].revealed = true;
+    if (!grid[r][c].revealed && !grid[r][c].mine) {
+      setScore((s) => s + 1);
+    }
 
     if (newGrid[r][c].mine) {
       setGameOver(true);
@@ -65,34 +85,83 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
 
   const toggleFlag = (e, r, c) => {
     e.preventDefault();
+
     if (gameOver || grid[r][c].revealed) return;
 
-    const newGrid = grid.map((row) => row.map((cell) => ({ ...cell })));
+    const newGrid = grid.map((row) =>
+      row.map((cell) => ({ ...cell }))
+    );
+
+    // toggle flag
     newGrid[r][c].flagged = !newGrid[r][c].flagged;
+
+    // update grid first
     setGrid(newGrid);
+
+    // update flag counter based on NEW value
+    setFlags((f) => f + (newGrid[r][c].flagged ? 1 : -1));
   };
 
   const resetGame = () => {
     setGrid(generateGrid(rows, cols, mines));
     setGameOver(false);
+    setTime(0);
+    setScore(0);
+    setTimerActive(false);
   };
 
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="mb-2 flex gap-2">
-        <button
-          onClick={resetGame}
-          className="px-3 py-1 rounded border border-cyan-500/40 bg-black/70 font-mono text-sm uppercase tracking-wider text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.25)] hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition"
-        >
-          Reset
-        </button>
         {gameOver && <span className="text-red-500 font-mono text-sm tracking-wider">Game Over!</span>}
+      </div>
+
+      <div className="relative w-full max-w-full z-10 mb-1 sm:mb-1 flex flex-col items-center gap-3">
+
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full">
+
+          <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center w-full sm:w-auto">
+            ⏱ Time: {time}s
+          </div>
+
+          <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center w-full sm:w-auto">
+            🎯 Score: {score}
+          </div>
+
+        </div>
+
+        {/* ROW 2: FLAGS + MINES */}
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full">
+
+          <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center w-full sm:w-auto">
+            🚩 Flags: {flags}
+          </div>
+
+          <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center w-full sm:w-auto">
+            💣 Mines: {mines}
+          </div>
+
+        </div>
+
+        {/* ROW 3: RESET */}
+        <div className="flex justify-center w-full">
+
+          <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition">
+            <button
+              onClick={resetGame}
+              className="font-mono text-sm uppercase tracking-wider text-cyan-300">Reset
+            </button>
+          </div>
+
+        </div>
+
       </div>
 
       <div
         className="grid gap-1 rounded-xl border border-cyan-500/20 p-2 shadow-[0_0_50px_rgba(34,211,238,0.15)] bg-black/90"
         style={{ gridTemplateColumns: `repeat(${cols}, 40px)` }}
       >
+
         {grid.flat().map((cell, index) => {
           const r = Math.floor(index / cols);
           const c = index % cols;
