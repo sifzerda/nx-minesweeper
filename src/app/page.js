@@ -1,7 +1,6 @@
-
 "use client";
 
-import Minesweeper from "../../components/Minesweeper";
+//import Minesweeper from "../../components/Minesweeper";
 import { useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -26,7 +25,7 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative overflow-hidden bg-black text-white">
       {/* Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute left-0 top-0 h-full w-full bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.12),transparent_30%),radial-gradient(circle_at_80%_30%,rgba(59,130,246,0.12),transparent_35%),radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.08),transparent_40%)]" />
@@ -41,6 +40,8 @@ export default function HomePage() {
           <div className="h-full w-full bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.08)_3px)]" />
         </div>
 
+
+
         <div className="absolute left-8 top-8 rounded border border-cyan-500/30 bg-black/70 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.35em] text-cyan-400 shadow-[0_0_25px_rgba(34,211,238,0.25)]">
           root@neural-core:~
         </div>
@@ -48,15 +49,16 @@ export default function HomePage() {
         <div className="absolute right-8 top-8 rounded border border-emerald-500/30 bg-black/70 px-4 py-2 font-mono text-[10px] uppercase tracking-[0.35em] text-emerald-400 shadow-[0_0_25px_rgba(16,185,129,0.25)]">
           secure channel online
         </div>
+
       </div>
 
       {/* Header */}
 
 
-<Minesweeper />
+{/*    <Minesweeper />     */}
 
       {/* Main */}
-      <div className="relative z-10 flex min-h-screen items-center justify-center px-6 py-16">
+      <div className="relative z-10 flex items-center justify-center px-6 py-16">
         <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-16 overflow-hidden rounded-[40px] border border-cyan-500/20 bg-black/50 p-10 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
 
