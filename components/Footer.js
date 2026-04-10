@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="relative z-20 overflow-hidden border-t border-cyan-500/20 bg-black/80 backdrop-blur-xl">
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.05)_1px,transparent_1px)] bg-[size:50px_50px] opacity-30" />
 
-      <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-8 md:flex-row">
+      <div className="relative mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-3 py-3 md:flex-row">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-[0.45em] text-cyan-500">
             Digital Archive Node
