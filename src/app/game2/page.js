@@ -107,7 +107,7 @@ export default function Minesweeper2({ rows = 8, cols = 8, mines = 10 }) {
       {gameOver && <div className="mb-4 text-red-500 font-mono text-lg">💥 GAME OVER 💥</div>}
       <div
         className="grid gap-[2px] border border-cyan-500/30 p-2 rounded-lg backdrop-blur-md"
-        style={{ gridTemplateColumns: `repeat(${cols}, 40px)` }}
+        style={{ gridTemplateColumns: `repeat(${cols}, 2.5rem)` }}
       >
         {grid.map((row, rIdx) =>
           row.map((cell, cIdx) => (

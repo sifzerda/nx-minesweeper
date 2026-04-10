@@ -1,5 +1,6 @@
 "use client";
 
+import Game from "../../components/Minesweeper2";
 import { useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -78,21 +79,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="relative z-10 overflow-x-auto">
-              <div className="mx-auto grid w-max grid-cols-10 overflow-hidden rounded-xl border border-cyan-500/20 shadow-[0_0_25px_rgba(34,211,238,0.15)]">
-                {grid.flat().map((cell, index) => (
-                  <div
-                    key={index}
-                    className={`flex h-8 w-8 sm:h-10 sm:w-10 md:h-11 md:w-11 lg:h-12 lg:w-12 items-center justify-center border border-cyan-500/10 text-sm sm:text-base lg:text-lg font-medium ${cell === "🚩"
-                      ? "bg-gradient-to-br from-cyan-400 to-blue-500 text-black shadow-[0_0_15px_rgba(34,211,238,0.5)]"
-                      : "bg-zinc-950 text-cyan-200"
-                      }`}
-                  >
-                    {cell}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <Game />
+
           </div>
 
           {/* Text */}
@@ -110,17 +98,17 @@ export default function HomePage() {
                 interface online
               </p>
 
-<h1 className="glitch-text text-[4.5rem] lg:text-[3.1rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
-  cybernetic
-</h1>
+              <h1 className="glitch-text text-[4.5rem] lg:text-[3.1rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
+                cybernetic
+              </h1>
 
-<h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
-  terminal
-</h1>
+              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+                terminal
+              </h1>
 
-<h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
-  protocol
-</h1>
+              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+                protocol
+              </h1>
 
             </div>
           </div>

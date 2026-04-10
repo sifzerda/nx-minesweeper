@@ -4,11 +4,10 @@ import Link from "next/link";
 
 export default function Header() {
   const navItems = [
-    { label: "MINE I", href: "/" },
-    { label: "SESSIONS", href: "/" },
-    { label: "LEADERBOARD", href: "/" },
-    { label: "ARCHIVE", href: "/" },
-    { label: "MINE II", href: "/game2" },
+    { label: "PLAY", href: "/" },
+    { label: "ABOUT", href: "/about" },
+    { label: "HIGHSCORES", href: "/highscores" },
+    { label: "EXTRA SPARE/MINE II", href: "/game2" },
   ];
 
   return (

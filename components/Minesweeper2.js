@@ -35,7 +35,7 @@ const generateGrid = (rows, cols, mines) => {
   return grid;
 };
 
-export default function Minesweeper({ rows = 5, cols = 10, mines = 10 }) {
+export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
   const [grid, setGrid] = useState(generateGrid(rows, cols, mines));
   const [gameOver, setGameOver] = useState(false);
 

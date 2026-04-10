@@ -79,7 +79,7 @@ export default function Minesweeper({ rows = 5, cols = 10, mines = 10 }) {
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="mb-2 flex gap-2">
+      <div className="mb-2 flex gap-2 justify-start">
         <button
           onClick={resetGame}
           className="px-3 py-1 rounded border border-cyan-500/40 bg-black/70 font-mono text-sm uppercase tracking-wider text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.25)] hover:bg-cyan-500/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition"
@@ -90,8 +90,8 @@ export default function Minesweeper({ rows = 5, cols = 10, mines = 10 }) {
       </div>
 
       <div
-        className="grid gap-1 rounded-xl border border-cyan-500/20 p-2 shadow-[0_0_50px_rgba(34,211,238,0.15)] bg-black/90"
-        style={{ gridTemplateColumns: `repeat(${cols}, 40px)` }}
+        className="inline-grid gap-1 rounded-xl border border-cyan-500/20 p-2 shadow-[0_0_50px_rgba(34,211,238,0.15)] bg-black/90"
+        style={{ gridTemplateColumns: `repeat(${cols}, 2.5rem)` }}
       >
         {grid.flat().map((cell, index) => {
           const r = Math.floor(index / cols);
