@@ -110,17 +110,17 @@ export default function HomePage() {
                 interface online
               </p>
 
-              <h1 className="glitch-text text-[5rem] font-light tracking-[-0.08em]">
-                cybernetic
-              </h1>
+<h1 className="glitch-text text-[4.5rem] lg:text-[3.1rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
+  cybernetic
+</h1>
 
-              <h1 className="glitch-text -translate-x-4 text-[4rem] font-light tracking-[-0.08em] opacity-70">
-                terminal
-              </h1>
+<h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+  terminal
+</h1>
 
-              <h1 className="glitch-text -translate-x-4 text-[4rem] font-light tracking-[-0.08em] opacity-70">
-                protocol
-              </h1>
+<h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[3rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+  protocol
+</h1>
 
             </div>
           </div>
