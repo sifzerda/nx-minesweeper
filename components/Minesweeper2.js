@@ -121,7 +121,7 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 w-full">
 
           <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center w-full sm:w-auto">
-            ⏱ Time: {time}s
+            ⏱ Time: {time}
           </div>
 
           <div className="rounded-md border border-cyan-500/40 bg-black px-3 py-2 sm:px-4 font-mono text-xs sm:text-sm uppercase tracking-[0.15em] text-cyan-300 shadow-[0_0_20px_rgba(34,211,238,0.25)] text-center w-full sm:w-auto">
