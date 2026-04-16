@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Cormorant_Garamond, Space_Mono } from "next/font/goo
 import "./globals.css";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import UnderConstructionBanner from "../../components/Construction";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +40,15 @@ export default function RootLayout({ children }) {
     >
       <body className="flex flex-col">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+
+          <UnderConstructionBanner />
+
+          {children}</main>
+
+
+
+
         <Footer />
       </body>
     </html>
