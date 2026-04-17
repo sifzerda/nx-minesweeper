@@ -25,6 +25,7 @@ const generateGrid = (rows, cols, mines) => {
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       if (grid[r][c].mine) continue;
+
       let count = 0;
       for (let dr = -1; dr <= 1; dr++) {
         for (let dc = -1; dc <= 1; dc++) {
@@ -48,7 +49,7 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
   const [time, setTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [score, setScore] = useState(0);
-  const [flags, setFlags] = useState(0);
+  const [flags, setFlags] = useState(mines);
 
   useEffect(() => {
     let interval;
@@ -62,43 +63,53 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
     return () => clearInterval(interval);
   }, [timerActive, gameOver]);
 
-  const reveal = (r, c, workingGrid = null) => {
+  const reveal = (r, c, workingGrid = null, isUserClick = false) => {
     const baseGrid = workingGrid || grid;
 
-    if (!timerActive) setTimerActive(true);
     if (gameOver || baseGrid[r][c].revealed || baseGrid[r][c].flagged) return;
+
+    if (isUserClick && !timerActive) setTimerActive(true);
 
     const newGrid = workingGrid
       ? baseGrid
       : baseGrid.map((row) => row.map((cell) => ({ ...cell })));
 
-    // Score only if first reveal of safe tile
-    if (!newGrid[r][c].revealed && !newGrid[r][c].mine) {
-      setScore((s) => s + 1);
-    }
+    const floodReveal = (rr, cc) => {
+      if (
+        rr < 0 ||
+        rr >= rows ||
+        cc < 0 ||
+        cc >= cols ||
+        newGrid[rr][cc].revealed ||
+        newGrid[rr][cc].flagged
+      ) return;
 
-    newGrid[r][c].revealed = true;
+      newGrid[rr][cc].revealed = true;
 
-    if (newGrid[r][c].mine) {
-      setGameOver(true);
-      alert("💥 Boom! Game Over");
-    } else if (newGrid[r][c].adjacent === 0) {
-      for (let dr = -1; dr <= 1; dr++) {
-        for (let dc = -1; dc <= 1; dc++) {
-          const nr = r + dr;
-          const nc = c + dc;
-
-          if (
-            nr >= 0 &&
-            nr < rows &&
-            nc >= 0 &&
-            nc < cols &&
-            !newGrid[nr][nc].revealed
-          ) {
-            reveal(nr, nc, newGrid); // reuse same grid
+      if (newGrid[rr][cc].adjacent === 0 && !newGrid[rr][cc].mine) {
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            floodReveal(rr + dr, cc + dc);
           }
         }
       }
+    };
+
+    floodReveal(r, c);
+
+    if (newGrid[r][c].mine) {
+      for (let rr = 0; rr < rows; rr++) {
+        for (let cc = 0; cc < cols; cc++) {
+          if (newGrid[rr][cc].mine) {
+            newGrid[rr][cc].revealed = true;
+          }
+        }
+      }
+
+      setGameOver(true);
+      alert("💥 Boom! Game Over");
+    } else {
+      if (isUserClick) setScore((s) => s + 1);
     }
 
     if (!workingGrid) setGrid(newGrid);
@@ -109,14 +120,24 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
 
     if (gameOver || grid[r][c].revealed) return;
 
+    const cell = grid[r][c];
+
     const newGrid = grid.map((row) =>
       row.map((cell) => ({ ...cell }))
     );
 
-    newGrid[r][c].flagged = !newGrid[r][c].flagged;
+    const isAddingFlag = !cell.flagged;
+
+    if (isAddingFlag && flags <= 0) return;
+
+    newGrid[r][c].flagged = !cell.flagged;
 
     setGrid(newGrid);
-    setFlags((f) => f + (newGrid[r][c].flagged ? 1 : -1));
+
+    setFlags((f) => {
+      const next = isAddingFlag ? f - 1 : f + 1;
+      return Math.min(mines, Math.max(0, next));
+    });
   };
 
   const resetGame = () => {
@@ -124,63 +145,68 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
     setGameOver(false);
     setTime(0);
     setScore(0);
-    setFlags(0);
     setTimerActive(false);
+    setFlags(mines);
   };
+
+  // 🧮 derived stats
+  const totalCells = rows * cols;
+  const clearedCells = grid.flat().filter((c) => c.revealed).length;
+  const remainingCells = totalCells - clearedCells;
 
   return (
     <div className="flex flex-col items-center gap-4">
-      <div className="mb-2 flex gap-2">
-        {gameOver && (
-          <span className="text-red-500 font-mono text-sm tracking-wider">
-            Game Over!
-          </span>
-        )}
-      </div>
+      {gameOver && (
+        <span className="text-red-500 font-mono text-sm">
+          Game Over!
+        </span>
+      )}
 
-      <div className="relative w-full max-w-full z-10 mb-1 flex flex-col items-center gap-3">
-        <div className="flex flex-col sm:flex-row justify-center gap-3 w-full">
-          <div className="rounded-md border border-cyan-500/40 bg-black px-4 py-2 font-mono text-sm text-cyan-300 text-center">
-            ⏱ Time: {time}
-          </div>
+      {/* STATS BAR */}
+      <div className="flex flex-wrap gap-3 justify-center">
 
-          <div className="rounded-md border border-cyan-500/40 bg-black px-4 py-2 font-mono text-sm text-cyan-300 text-center">
-            🎯 Score: {score}
-          </div>
+        <div className="border px-3 py-1 text-cyan-300">
+          ⏱ {time}
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-3 w-full">
-          <div className="rounded-md border border-cyan-500/40 bg-black px-4 py-2 font-mono text-sm text-cyan-300 text-center">
-            🚩 Flags: {flags}
-          </div>
-
-          <div className="rounded-md border border-cyan-500/40 bg-black px-4 py-2 font-mono text-sm text-cyan-300 text-center">
-            💣 Mines: {mines}
-          </div>
+        <div className="border px-3 py-1 text-cyan-300">
+          🎯 {score}
         </div>
 
-        <button
-          onClick={resetGame}
-          className="rounded-md border border-cyan-500/40 bg-black px-4 py-2 font-mono text-sm text-cyan-300 hover:bg-cyan-500/10"
-        >
-          Reset
-        </button>
+        <div className="border px-3 py-1 text-cyan-300">
+          🚩 {flags}
+        </div>
+
+        <div className="border px-3 py-1 text-cyan-300">
+          💣 {mines}
+        </div>
+
+        {/* NEW BOX */}
+        <div className="border px-3 py-1 text-cyan-300">
+          🧱 {clearedCells} / {totalCells}
+        </div>
+
       </div>
+
+      <button
+        onClick={resetGame}
+        className="border px-4 py-2 text-cyan-300"
+      >
+        Reset
+      </button>
 
       <div
-        className="grid gap-1 rounded-xl border border-cyan-500/20 p-2 bg-black/90"
+        className="grid gap-1 p-2 bg-black"
         style={{ gridTemplateColumns: `repeat(${cols}, 40px)` }}
       >
         {grid.map((row, r) =>
           row.map((cell, c) => {
             let content = "";
-            let bg =
-              "bg-zinc-950 text-cyan-200 shadow-[inset_0_0_10px_rgba(34,211,238,0.2)]";
+            let bg = "bg-zinc-900 text-cyan-200";
+            let disabled = gameOver ? "opacity-50 cursor-not-allowed" : "";
 
             if (cell.revealed) {
-              bg = cell.mine
-                ? "bg-red-600 text-black"
-                : "bg-zinc-800 text-white";
+              bg = cell.mine ? "bg-red-600" : "bg-zinc-700";
               content = cell.mine
                 ? "💣"
                 : cell.adjacent > 0
@@ -188,15 +214,15 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
                 : "";
             } else if (cell.flagged) {
               content = "🚩";
-              bg = "bg-blue-500 text-black";
+              bg = "bg-blue-500";
             }
 
             return (
               <div
                 key={`${r}-${c}`}
-                onClick={() => reveal(r, c)}
+                onClick={() => reveal(r, c, null, true)}
                 onContextMenu={(e) => toggleFlag(e, r, c)}
-                className={`flex h-10 w-10 items-center justify-center cursor-pointer select-none rounded border border-cyan-500/10 font-mono text-lg font-bold ${bg} hover:scale-105`}
+                className={`flex h-10 w-10 items-center justify-center border text-lg font-bold ${bg} ${disabled}`}
               >
                 {content}
               </div>
