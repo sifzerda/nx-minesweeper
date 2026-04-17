@@ -152,53 +152,27 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
   // 🧮 derived stats
   const totalCells = rows * cols;
   const clearedCells = grid.flat().filter((c) => c.revealed).length;
-  const remainingCells = totalCells - clearedCells;
 
   return (
     <div className="flex flex-col items-center gap-4">
       {gameOver && (
-        <span className="text-red-500 font-mono text-sm">
-          Game Over!
-        </span>
+        <span className="text-red-500 font-mono text-sm">Game Over!</span>
       )}
 
       {/* STATS BAR */}
       <div className="flex flex-wrap gap-3 justify-center">
 
-        <div className="border px-3 py-1 text-cyan-300">
-          ⏱ {time}
-        </div>
-
-        <div className="border px-3 py-1 text-cyan-300">
-          🎯 {score}
-        </div>
-
-        <div className="border px-3 py-1 text-cyan-300">
-          🚩 {flags}
-        </div>
-
-        <div className="border px-3 py-1 text-cyan-300">
-          💣 {mines}
-        </div>
-
-        {/* NEW BOX */}
-        <div className="border px-3 py-1 text-cyan-300">
-          🧱 {clearedCells} / {totalCells}
-        </div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> ⏱ {time}</div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> 🎯 {score}</div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> 🚩 {flags}</div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono">💣 {mines}</div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> 🧱 {clearedCells} / {totalCells}</div>
 
       </div>
 
-      <button
-        onClick={resetGame}
-        className="border px-4 py-2 text-cyan-300"
-      >
-        Reset
-      </button>
+      <button onClick={resetGame} className="border px-4 py-2 text-cyan-300">Reset</button>
 
-      <div
-        className="grid gap-1 p-2 bg-black"
-        style={{ gridTemplateColumns: `repeat(${cols}, 40px)` }}
-      >
+      <div className="grid gap-1 p-2 bg-black" style={{ gridTemplateColumns: `repeat(${cols}, 40px)` }}>
         {grid.map((row, r) =>
           row.map((cell, c) => {
             let content = "";
@@ -218,12 +192,10 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
             }
 
             return (
-              <div
-                key={`${r}-${c}`}
+              <div key={`${r}-${c}`}
                 onClick={() => reveal(r, c, null, true)}
                 onContextMenu={(e) => toggleFlag(e, r, c)}
-                className={`flex h-10 w-10 items-center justify-center border text-lg font-bold ${bg} ${disabled}`}
-              >
+                className={`flex h-10 w-10 items-center justify-center border text-lg font-bold ${bg} ${disabled}`}>
                 {content}
               </div>
             );
