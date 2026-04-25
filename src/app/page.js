@@ -69,16 +69,20 @@ export default function HomePage() {
             <div className="absolute right-0 top-0 hidden lg:block h-[2px] w-40 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.9)]" />
             <div className="absolute bottom-0 left-0 hidden lg:block h-[2px] w-52 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.9)]" />
 
-            <div className="space-y-1 sm:space-y-[-6px] lg:space-y-[-10px] uppercase leading-none">
-              <p className="font-mono text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.5em] text-cyan-400/90">
+            <div className="uppercase leading-none">
+
+              <p className="font-mono text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.5em] text-cyan-400/90 mb-1">
                 interface online
               </p>
 
-              <h1 className="glitch-text text-[2rem] lg:text-[4.6rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
+              <h1 className="glitch-text font-light tracking-[-0.08em] leading-[0.85] 
+    text-[2rem] sm:text-[2.4rem] md:text-[3.2rem] lg:text-[4.2rem] xl:text-[5rem]">
                 cybernetic
               </h1>
 
-              <h1 className="glitch-text -translate-x-4 text-[1.5rem] lg:text-[4.5rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+              <h1 className="glitch-text font-light tracking-[-0.08em] leading-[0.85] opacity-70 
+    text-[1.5rem] sm:text-[1.8rem] md:text-[2.6rem] lg:text-[3.8rem] xl:text-[4.5rem] 
+    -mt-[0.15em] sm:-mt-[0.2em] md:-mt-[0.2em] lg:-mt-[0.2em]">
                 terminal
               </h1>
 
