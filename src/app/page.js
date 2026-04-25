@@ -22,7 +22,7 @@ export default function HomePage() {
 
       {/* Main */}
       <div className="relative z-10 flex items-center justify-center px-1 py-1 sm:px-4 sm:py-12">
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-16 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-5 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-16 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-5 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
 
           <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
@@ -74,17 +74,14 @@ export default function HomePage() {
                 interface online
               </p>
 
-              <h1 className="glitch-text text-[4.5rem] lg:text-[4.6rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
+              <h1 className="glitch-text text-[2rem] lg:text-[4.6rem] xl:text-[5rem] md:text-[3.8rem] font-light tracking-[-0.08em]">
                 cybernetic
               </h1>
 
-              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[4.5rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
+              <h1 className="glitch-text -translate-x-4 text-[1.5rem] lg:text-[4.5rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
                 terminal
               </h1>
 
-              <h1 className="glitch-text -translate-x-4 text-[4rem] lg:text-[4.5rem] xl:text-[4rem] md:text-[3rem] font-light tracking-[-0.08em] opacity-70">
-                protocol
-              </h1>
             </div>
           </div>
         </div>
