@@ -27,12 +27,9 @@ This is a rebuild and refactor of my first fullstack minesweeper game into a ser
 
 This app has been deployed to Vercel. Visit the site [Minesweeper Next.js](https://nx-minesweeper.vercel.app/)
 
-screenshot links:
-
-<img width="1919" height="737" alt="Image" src="https://github.com/user-attachments/assets/e15545a2-c388-4fad-a517-22426a19e132" />
-<img width="1905" height="614" alt="Image" src="https://github.com/user-attachments/assets/f01144dd-39d3-4e52-aed1-6f60f6a2c6da" />
-<img width="1919" height="736" alt="Image" src="https://github.com/user-attachments/assets/78a042ff-8b67-4f14-8759-2fcb28dd8bd4" />
-<img width="1919" height="769" alt="Image" src="https://github.com/user-attachments/assets/74a9d0e0-6ab2-4911-9d22-1ddda94e0905" />
+![pic1](https://github.com/user-attachments/assets/e15545a2-c388-4fad-a517-22426a19e132)
+![pic2](https://github.com/user-attachments/assets/f01144dd-39d3-4e52-aed1-6f60f6a2c6da)
+![pic4](https://github.com/user-attachments/assets/74a9d0e0-6ab2-4911-9d22-1ddda94e0905)
 
 ## ⚙️ Installation
 
