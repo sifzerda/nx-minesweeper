@@ -81,4 +81,4 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 ## Project status
 
-This project is complete.
+This project is complete. Currently the highscores page is just for display, further development is needed to allow users to submit their scores.
