@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
       ${spaceMono.variable} 
       antialiased`}>
 
-      <body className="flex flex-col">
+      <body className="min-h-screen flex flex-col">
 
         <Header />
 
