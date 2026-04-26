@@ -2,7 +2,7 @@
 
 export default function AboutPage() {
     return (
-        <main className="relative min-h-screen overflow-hidden bg-black text-white">
+        <main className="relative overflow-hidden bg-black text-white">
 
             {/* Background (same style as home) */}
             <div className="absolute inset-0">

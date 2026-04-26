@@ -10,7 +10,7 @@ const mockScores = [
 
 export default function HighScoresPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white">
+    <main className="relative overflow-hidden bg-black text-white">
 
       {/* Background */}
       <div className="absolute inset-0">
@@ -19,9 +19,9 @@ export default function HighScoresPage() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex justify-center px-6 py-20">
+      <div className="relative z-10 flex justify-center px-6 py-0 sm:py-8 md:py-20">
 
-        <div className="w-full max-w-5xl rounded-[30px] border border-cyan-500/20 bg-black/60 p-8 backdrop-blur-2xl shadow-[0_0_90px_rgba(34,211,238,0.15)]">
+        <div className="w-full max-w-5xl rounded-[30px] border border-cyan-500/20 bg-black/60 p-6 backdrop-blur-2xl shadow-[0_0_90px_rgba(34,211,238,0.15)]">
 
           {/* Header */}
           <div className="mb-10">
@@ -29,7 +29,7 @@ export default function HighScoresPage() {
               leaderboard://global_rankings
             </p>
 
-            <h1 className="mt-4 text-[3rem] font-light tracking-[-0.08em]">
+            <h1 className="mt-2 text-[3rem] font-light tracking-[-0.08em]">
               high scores
             </h1>
           </div>
@@ -48,8 +48,7 @@ export default function HighScoresPage() {
             {mockScores.map((s, i) => (
               <div
                 key={i}
-                className="grid grid-cols-3 px-4 py-4 text-sm border-t border-cyan-500/10 hover:bg-cyan-500/5 transition"
-              >
+                className="grid grid-cols-3 px-4 py-4 text-sm border-t border-cyan-500/10 hover:bg-cyan-500/5 transition">
                 <div className="text-cyan-100">{s.name}</div>
                 <div className="text-cyan-300">{s.score}</div>
                 <div className="text-cyan-400/70">{s.time}</div>
@@ -59,8 +58,20 @@ export default function HighScoresPage() {
           </div>
 
           {/* Footer */}
-          <div className="mt-8 font-mono text-xs text-cyan-400/60">
-            LIVE RANKING FEED • UPDATING EVERY 60s
+          <div className="mt-8 font-mono text-xs text-cyan-400/60 flex flex-col sm:flex-row sm:items-center sm:gap-x-2 gap-y-1">
+            <span>LIVE RANKING FEED:</span>
+
+            <span className="text-red-400 uppercase animate-pulse">
+              [offline]
+            </span>
+
+            <span className="text-cyan-400/40">•</span>
+
+            <span>UPDATING STATUS:</span>
+
+            <span className="text-white uppercase animate-pulse">
+              [static]
+            </span>
           </div>
 
         </div>
