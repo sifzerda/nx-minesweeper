@@ -17,7 +17,7 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-6">
-<div className="rounded-full border border-cyan-500/30 bg-cyan-500/10 
+          <div className="rounded-full border border-cyan-500/30 bg-cyan-500/10 
   px-2 sm:px-3 md:px-4 
   py-1 sm:py-1.5 md:py-2 
   font-mono 
@@ -26,10 +26,10 @@ export default function Footer() {
   tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.3em] 
   text-cyan-300 
   shadow-[0_0_18px_rgba(34,211,238,0.25)]">
-  Signal Stable
-</div>
+            Signal Stable
+          </div>
 
-<div className="rounded-full border border-blue-500/30 bg-blue-500/10 
+          <div className="rounded-full border border-blue-500/30 bg-blue-500/10 
   px-2 sm:px-3 md:px-4 
   py-1 sm:py-1.5 md:py-2 
   font-mono 
@@ -38,8 +38,8 @@ export default function Footer() {
   tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.3em] 
   text-blue-300 
   shadow-[0_0_18px_rgba(59,130,246,0.25)]">
-  Version 2.0
-</div>
+            Version 2.0
+          </div>
         </div>
       </div>
     </footer>
