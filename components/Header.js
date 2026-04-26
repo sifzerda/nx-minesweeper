@@ -31,20 +31,15 @@ export default function Header() {
           </div>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-400">
-              Neural Interface Active
-            </p>
-            <h2 className="text-2xl font-bold uppercase tracking-[0.2em] text-white glitch-text">
-              Minesweeper.exe
-            </h2>
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-400">Neural Interface Active</p>
+            <h2 className="text-2xl font-bold uppercase tracking-[0.2em] text-white glitch-text">Minesweeper.exe</h2>
           </div>
         </div>
 
-        {/* HAMBURGER (mobile only) */}
+        {/* HAMBURGER (mobile) */}
         <button
-          className="md:hidden text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2"
-          onClick={() => setOpen(!open)}
-        >
+          className="md:hidden text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400 hover:border-cyan-400"
+          onClick={() => setOpen(!open)}>
           {open ? "Close" : "Menu"}
         </button>
 
@@ -54,8 +49,7 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400/50"
-            >
+              className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400/50">
               {item.label}
             </Link>
           ))}
@@ -71,8 +65,7 @@ export default function Header() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-3 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300"
-              >
+                className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-3 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400 hover:bg-zinc-900/80 transition-all duration-200">
                 {item.label}
               </Link>
             ))}

@@ -19,7 +19,10 @@ export default function AboutPage() {
                         <p className="text-cyan-300">system://node</p>
                         <p className="text-cyan-400">react://next.js</p>
                         <p className="text-cyan-500">db:prisma</p>
-
+                        <p className="text-cyan-600">status://
+                            <span className="text-green-400">connected : </span>
+                            <span className="text-amber-400 animate-pulse">standby</span>
+                        </p>
                         <h1 className="mt-4 text-[3rem] font-light tracking-[-0.08em]">
                             about
                         </h1>
