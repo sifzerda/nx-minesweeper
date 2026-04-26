@@ -13,7 +13,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="relative z-20 overflow-hidden border-b border-cyan-500/20 bg-black/80 backdrop-blur-xl">
+    <header className="relative z-20 overflow-visible border-b border-cyan-500/20 bg-black/80 backdrop-blur-xl">
 
       {/* background grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.06)_1px,transparent_1px)] bg-[size:60px_60px] opacity-40" />
@@ -57,8 +57,8 @@ export default function Header() {
       </div>
 
       {/* MOBILE DROPDOWN (below header) */}
-      {open && (
-        <div className="md:hidden border-t border-cyan-500/20 bg-black/90 backdrop-blur-xl">
+     {open && (
+  <div className="md:hidden absolute left-0 top-full w-full z-50 border-t border-cyan-500/20 bg-black/90 backdrop-blur-xl">
           <div className="flex flex-col px-4 py-3 gap-2">
             {navItems.map((item) => (
               <Link
