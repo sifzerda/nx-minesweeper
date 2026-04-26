@@ -22,7 +22,7 @@ export default function HomePage() {
 
       {/* Main */}
       <div className="relative z-10 flex items-center justify-center px-1 py-1 sm:px-2 sm:py-1">
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-16 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-5 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-16 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-10 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
 
           <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
