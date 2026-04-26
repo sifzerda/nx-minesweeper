@@ -31,18 +31,16 @@ export default function AboutPage() {
                     {/* Body */}
                     <div className="space-y-6 text-sm leading-relaxed text-cyan-100/80">
                         <p>
-                            This system is a simulated cyber interface built around a real-time logic core.
-                            It processes user interaction, score computation, and memory state rendering.
+                            This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app.
                         </p>
 
                         <p>
-                            The environment you see is not static — it reacts to time cycles, input states,
-                            and probabilistic scoring events.
+                            Overall styling and GUI was changed and enhanced to look futuristic. The previous mongoDB of users and scores was removed and this app is connected to a 
+                            (currently unused) Postgres-Neon DB. 
                         </p>
 
                         <p>
-                            All visuals are generated using layered noise fields, grid overlays, and
-                            reactive glow systems.
+                            The scoreboard is currently display only, but future development will aim to add user accounts and score submission.
                         </p>
                     </div>
 

@@ -21,7 +21,7 @@ export default function Footer() {
   px-2 sm:px-3 md:px-4 
   py-1 sm:py-1.5 md:py-2 
   font-mono 
-  text-[10px] sm:text-[10px] md:text-[11px] lg:text-xs
+  text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs
   uppercase 
   tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.3em] 
   text-cyan-300 
@@ -33,7 +33,7 @@ export default function Footer() {
   px-2 sm:px-3 md:px-4 
   py-1 sm:py-1.5 md:py-2 
   font-mono 
-  text-[10px] sm:text-[10px] md:text-[11px] lg:text-xs
+  text-[9px] sm:text-[10px] md:text-[11px] lg:text-xs
   uppercase 
   tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.3em] 
   text-blue-300 
