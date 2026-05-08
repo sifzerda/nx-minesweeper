@@ -30,10 +30,6 @@ export default function Minesweeper({
     (s) => s.flags
   );
 
-  const score = useMineStore(
-    (s) => s.score
-  );
-
   const time = useMineStore(
     (s) => s.time
   );
@@ -91,10 +87,6 @@ export default function Minesweeper({
 
         <div className="border px-3 py-1 text-cyan-300 font-mono">
           ⏱ {time}
-        </div>
-
-        <div className="border px-3 py-1 text-cyan-300 font-mono">
-          🎯 {score}
         </div>
 
         <div className="border px-3 py-1 text-cyan-300 font-mono">

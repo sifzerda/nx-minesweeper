@@ -68,7 +68,6 @@ export const useMineStore = create((set, get) => ({
     grid: [],
     gameOver: false,
     time: 0,
-    score: 0,
     timerActive: false,
     flags: 10,
     revealedCount: 0,
@@ -81,7 +80,6 @@ export const useMineStore = create((set, get) => ({
             flags: mines,
             gameOver: false,
             time: 0,
-            score: 0,
             timerActive: false,
             grid: generateGrid(rows, cols, mines),
         });
@@ -95,7 +93,6 @@ export const useMineStore = create((set, get) => ({
             flags: mines,
             gameOver: false,
             time: 0,
-            score: 0,
             timerActive: false,
             revealedCount: 0,
             grid: generateGrid(rows, cols, mines),
@@ -108,7 +105,6 @@ export const useMineStore = create((set, get) => ({
             gameOver,
             rows,
             cols,
-            score,
             timerActive,
             mines
         } = get();
@@ -189,13 +185,12 @@ export const useMineStore = create((set, get) => ({
 
         set({
             grid: newGrid,
-            score: score + 1,
             revealedCount: localRevealed
         });
     },
 
     toggleFlag: (r, c) => {
-        const { grid, gameOver, flags, rows, cols, mines, score, timerActive } = get();
+        const { grid, gameOver, flags, rows, cols, mines, timerActive } = get();
 
         if (gameOver || grid[r][c].revealed) return;
 
@@ -236,7 +231,6 @@ export const useMineStore = create((set, get) => ({
         set({
             grid: newGrid,
             flags: nextFlags,
-            score: score + 1,
             revealedCount,
             gameOver: hasWon,
             timerActive: hasWon ? false : timerActive,
