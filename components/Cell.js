@@ -4,17 +4,9 @@ import { memo, useCallback } from "react";
 import { useMineStore } from "./useMineStore";
 
 const Cell = memo(function Cell({ r, c }) {
-    const cell = useMineStore(
-        useCallback((s) => s.grid[r]?.[c], [r, c])
-    );
-
-    const reveal = useMineStore(
-        (s) => s.reveal
-    );
-
-    const toggleFlag = useMineStore(
-        (s) => s.toggleFlag
-    );
+    const cell = useMineStore( useCallback((s) => s.grid[r]?.[c], [r, c]));
+    const reveal = useMineStore((s) => s.reveal);
+    const toggleFlag = useMineStore((s) => s.toggleFlag);
 
     if (!cell) return null;
 
@@ -35,14 +27,12 @@ const Cell = memo(function Cell({ r, c }) {
     }
 
     return (
-        <button
-            onClick={() => reveal(r, c)}
+        <button onClick={() => reveal(r, c)}
             onContextMenu={(e) => {
                 e.preventDefault();
                 toggleFlag(r, c);
             }}
-            className={`touch-manipulation flex h-10 w-10 items-center justify-center border ${bg}`}
-        >
+            className={`touch-manipulation flex h-10 w-10 items-center justify-center border ${bg}`}>
             {content}
         </button>
     );

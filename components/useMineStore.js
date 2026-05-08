@@ -106,7 +106,6 @@ export const useMineStore = create((set, get) => ({
             rows,
             cols,
             timerActive,
-            mines
         } = get();
 
         let localRevealed = get().revealedCount;
@@ -138,9 +137,7 @@ export const useMineStore = create((set, get) => ({
             ) continue;
 
             const key = rr * cols + cc;
-
             if (visited.has(key)) continue;
-
             visited.add(key);
 
             cloneCell(newGrid, clonedRows, rr, cc);
@@ -191,32 +188,19 @@ export const useMineStore = create((set, get) => ({
 
     toggleFlag: (r, c) => {
         const { grid, gameOver, flags, rows, cols, mines, timerActive } = get();
-
         if (gameOver || grid[r][c].revealed) return;
-
         const cell = grid[r][c];
-
         if (!cell.flagged && flags <= 0) return;
-
         const newGrid = [...grid];
-
         newGrid[r] = [...newGrid[r]];
-
         newGrid[r][c] = {
             ...newGrid[r][c],
             flagged: !cell.flagged,
         };
 
         const isAddingFlag = !cell.flagged;
-
-        // update flag count
         const nextFlags = isAddingFlag ? flags - 1 : flags + 1;
-
-        // win check
         const totalCells = rows * cols;
-
-
-
         let revealedCount = 0;
 
         for (const row of newGrid) {
@@ -225,8 +209,7 @@ export const useMineStore = create((set, get) => ({
             }
         }
 
-        const hasWon =
-            revealedCount === totalCells - mines;
+        const hasWon = revealedCount === totalCells - mines;
 
         set({
             grid: newGrid,

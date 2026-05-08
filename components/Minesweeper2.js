@@ -10,37 +10,14 @@ export default function Minesweeper({
   cols = 8,
   mines = 10,
 }) {
-  const initialize = useMineStore(
-    (s) => s.initialize
-  );
-
-  const reset = useMineStore(
-    (s) => s.reset
-  );
-
-  const grid = useMineStore(
-    (s) => s.grid
-  );
-
-  const gameOver = useMineStore(
-    (s) => s.gameOver
-  );
-
-  const flags = useMineStore(
-    (s) => s.flags
-  );
-
-  const time = useMineStore(
-    (s) => s.time
-  );
-
-  const timerActive = useMineStore(
-    (s) => s.timerActive
-  );
-
-  const tick = useMineStore(
-    (s) => s.tick
-  );
+  const initialize = useMineStore((s) => s.initialize);
+  const reset = useMineStore((s) => s.reset);
+  const grid = useMineStore((s) => s.grid);
+  const gameOver = useMineStore((s) => s.gameOver);
+  const flags = useMineStore((s) => s.flags);
+  const time = useMineStore((s) => s.time);
+  const timerActive = useMineStore((s) => s.timerActive);
+  const tick = useMineStore((s) => s.tick);
 
   useEffect(() => {
     initialize(rows, cols, mines);
@@ -76,35 +53,19 @@ export default function Minesweeper({
   return (
     <div className="flex flex-col items-center gap-4">
 
-      {gameOver && (
-        <span className="text-red-500 font-mono text-sm">
-          Game Over!
-        </span>
-      )}
+      {gameOver && (<span className="text-red-500 font-mono text-sm">Game Over!</span>)}
 
       {/* STATS BAR */}
       <div className="flex flex-wrap gap-3 justify-center">
 
-        <div className="border px-3 py-1 text-cyan-300 font-mono">
-          ⏱ {time}
-        </div>
-
-        <div className="border px-3 py-1 text-cyan-300 font-mono">
-          🚩 {flags}
-        </div>
-
-        <div className="border px-3 py-1 text-cyan-300 font-mono">
-          💣 {mines}
-        </div>
-
-        <div className="border px-3 py-1 text-cyan-300 font-mono">
-          🧱 {clearedCells} / {totalCells}
-        </div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> ⏱ {time}</div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> 🚩 {flags}</div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> 💣 {mines}</div>
+        <div className="border px-3 py-1 text-cyan-300 font-mono"> 🧱 {clearedCells} / {totalCells}</div>
 
       </div>
 
-      <button onClick={() => reset(rows, cols, mines)}
-        className="border px-4 py-1 text-cyan-300"> Reset</button>
+      <button onClick={() => reset(rows, cols, mines)} className="border px-4 py-1 text-cyan-300"> Reset</button>
 
       <div className="grid gap-1 p-2 bg-black" style={gridStyle}>
         {grid.map((row, r) =>
