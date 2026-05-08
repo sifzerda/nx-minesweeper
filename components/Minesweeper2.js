@@ -38,9 +38,23 @@ export default function Minesweeper({
     (s) => s.time
   );
 
+  const timerActive = useMineStore(
+    (s) => s.timerActive
+  );
+
+  const tick = useMineStore(
+    (s) => s.tick
+  );
+
   useEffect(() => {
     initialize(rows, cols, mines);
   }, [rows, cols, mines]);
+
+  useEffect(() => {
+    if (!timerActive) return;
+    const id = setInterval(() => tick(), 1000);
+    return () => clearInterval(id);
+  }, [timerActive]);
 
   const totalCells = rows * cols;
 
@@ -97,17 +111,10 @@ export default function Minesweeper({
 
       </div>
 
-      <button
-        onClick={() => reset(rows, cols, mines)}
-        className="border px-4 py-2 text-cyan-300"
-      >
-        Reset
-      </button>
+      <button onClick={() => reset(rows, cols, mines)}
+        className="border px-4 py-1 text-cyan-300"> Reset</button>
 
-      <div
-        className="grid gap-1 p-2 bg-black"
-        style={gridStyle}
-      >
+      <div className="grid gap-1 p-2 bg-black" style={gridStyle}>
         {grid.map((row, r) =>
           row.map((_, c) => (
             <Cell

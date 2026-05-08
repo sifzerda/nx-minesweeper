@@ -242,4 +242,7 @@ export const useMineStore = create((set, get) => ({
             timerActive: hasWon ? false : timerActive,
         });
     },
+    tick: () => {
+        set((state) => ({ time: state.time + 1 }));
+    },
 }));
