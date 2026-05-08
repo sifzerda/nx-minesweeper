@@ -1,40 +1,51 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useCallback } from "react";
+import { useMineStore } from "./useMineStore";
 
-const Cell = memo(function Cell({
-  cell,
-  r,
-  c,
-  gameOver,
-  reveal,
-  toggleFlag,
-}) {
-  let content = "";
-  let bg = "bg-zinc-900 text-cyan-200";
-  let disabled = gameOver ? "opacity-50 cursor-not-allowed" : "";
+const Cell = memo(function Cell({ r, c }) {
+    const cell = useMineStore(
+        useCallback((s) => s.grid[r]?.[c], [r, c])
+    );
 
-  if (cell.revealed) {
-    bg = cell.mine ? "bg-red-600" : "bg-zinc-700";
+    const reveal = useMineStore(
+        (s) => s.reveal
+    );
 
-    content = cell.mine
-      ? "💣"
-      : cell.adjacent > 0
-      ? cell.adjacent
-      : "";
-  } else if (cell.flagged) {
-    content = "🚩";
-    bg = "bg-blue-500";
-  }
+    const toggleFlag = useMineStore(
+        (s) => s.toggleFlag
+    );
 
-  return (
-    <div
-      onClick={() => reveal(r, c, null, true)}
-      onContextMenu={(e) => toggleFlag(e, r, c)}
-      className={`touch-manipulation flex h-10 w-10 items-center justify-center border text-lg font-bold ${bg} ${disabled}`}>
-      {content}
-    </div>
-  );
+    if (!cell) return null;
+
+    let content = "";
+    let bg = "bg-zinc-900";
+
+    if (cell.revealed) {
+        bg = cell.mine
+            ? "bg-red-600"
+            : "bg-zinc-700";
+
+        content = cell.mine
+            ? "💣"
+            : cell.adjacent || "";
+    } else if (cell.flagged) {
+        content = "🚩";
+        bg = "bg-blue-500";
+    }
+
+    return (
+        <button
+            onClick={() => reveal(r, c)}
+            onContextMenu={(e) => {
+                e.preventDefault();
+                toggleFlag(r, c);
+            }}
+            className={`touch-manipulation flex h-10 w-10 items-center justify-center border ${bg}`}
+        >
+            {content}
+        </button>
+    );
 });
 
 export default Cell;
