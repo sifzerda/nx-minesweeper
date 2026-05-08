@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import Cell from "./Cell";
+
 
 const generateGrid = (rows, cols, mines) => {
   const grid = Array.from({ length: rows }, () =>
@@ -43,6 +45,15 @@ const generateGrid = (rows, cols, mines) => {
   return grid;
 };
 
+const cloneCell = (grid, clonedRows, r, c) => {
+  if (!clonedRows.has(r)) {
+    grid[r] = [...grid[r]];
+    clonedRows.add(r);
+  }
+
+  grid[r][c] = { ...grid[r][c] };
+};
+
 export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
   const [grid, setGrid] = useState(generateGrid(rows, cols, mines));
   const [gameOver, setGameOver] = useState(false);
@@ -63,74 +74,90 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
     return () => clearInterval(interval);
   }, [timerActive, gameOver]);
 
-  const reveal = (r, c, workingGrid = null, isUserClick = false) => {
+  const reveal = useCallback((r, c, workingGrid = null, isUserClick = false) => {
     const baseGrid = workingGrid || grid;
 
     if (gameOver || baseGrid[r][c].revealed || baseGrid[r][c].flagged) return;
 
     if (isUserClick && !timerActive) setTimerActive(true);
 
-    const newGrid = workingGrid
-      ? baseGrid
-      : baseGrid.map((row) => row.map((cell) => ({ ...cell })));
+    const newGrid = workingGrid ? baseGrid : [...baseGrid];
+    const clonedRows = new Set();
+    const visited = new Set();
+    const queue = [[r, c]];
 
-    const floodReveal = (rr, cc) => {
+    while (queue.length) {
+      const [rr, cc] = queue.pop();
+
       if (
         rr < 0 ||
         rr >= rows ||
         cc < 0 ||
-        cc >= cols ||
-        newGrid[rr][cc].revealed ||
-        newGrid[rr][cc].flagged
-      ) return;
+        cc >= cols
+      ) continue;
 
-      newGrid[rr][cc].revealed = true;
+      const key = `${rr}-${cc}`;
 
-      if (newGrid[rr][cc].adjacent === 0 && !newGrid[rr][cc].mine) {
+      if (visited.has(key)) continue;
+
+      visited.add(key);
+
+      cloneCell(newGrid, clonedRows, rr, cc);
+
+      const cell = newGrid[rr][cc];
+
+      if (cell.revealed || cell.flagged) continue;
+
+      cell.revealed = true;
+
+      if (cell.adjacent === 0 && !cell.mine) {
         for (let dr = -1; dr <= 1; dr++) {
           for (let dc = -1; dc <= 1; dc++) {
-            floodReveal(rr + dr, cc + dc);
+            queue.push([rr + dr, cc + dc]);
           }
         }
       }
-    };
-
-    floodReveal(r, c);
+    }
 
     if (newGrid[r][c].mine) {
       for (let rr = 0; rr < rows; rr++) {
         for (let cc = 0; cc < cols; cc++) {
           if (newGrid[rr][cc].mine) {
+            cloneCell(newGrid, clonedRows, rr, cc);
             newGrid[rr][cc].revealed = true;
           }
         }
       }
 
       setGameOver(true);
-      alert("💥 Boom! Game Over");
     } else {
       if (isUserClick) setScore((s) => s + 1);
     }
 
     if (!workingGrid) setGrid(newGrid);
-  };
+  },
+    [grid, gameOver, timerActive, rows, cols]
+  );
 
-  const toggleFlag = (e, r, c) => {
+  const toggleFlag = useCallback((e, r, c) => {
     e.preventDefault();
 
     if (gameOver || grid[r][c].revealed) return;
 
     const cell = grid[r][c];
 
-    const newGrid = grid.map((row) =>
-      row.map((cell) => ({ ...cell }))
-    );
+    const newGrid = [...grid];
+
+    newGrid[r] = [...newGrid[r]];
+
+    newGrid[r][c] = {
+      ...newGrid[r][c],
+      flagged: !cell.flagged,
+    };
 
     const isAddingFlag = !cell.flagged;
 
     if (isAddingFlag && flags <= 0) return;
-
-    newGrid[r][c].flagged = !cell.flagged;
 
     setGrid(newGrid);
 
@@ -138,7 +165,9 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
       const next = isAddingFlag ? f - 1 : f + 1;
       return Math.min(mines, Math.max(0, next));
     });
-  };
+  },
+    [grid, gameOver, flags, mines]
+  );
 
   const resetGame = () => {
     setGrid(generateGrid(rows, cols, mines));
@@ -149,9 +178,23 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
     setFlags(mines);
   };
 
-  // 🧮 derived stats
+  // derived stats
   const totalCells = rows * cols;
-  const clearedCells = grid.flat().filter((c) => c.revealed).length;
+  const clearedCells = useMemo(() => {
+    let count = 0;
+
+    for (const row of grid) {
+      for (const cell of row) {
+        if (cell.revealed) count++;
+      }
+    }
+
+    return count;
+  }, [grid]);
+
+  const gridStyle = useMemo(() => ({
+    gridTemplateColumns: `repeat(${cols}, 40px)`,
+  }), [cols]);
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -172,35 +215,22 @@ export default function Minesweeper({ rows = 8, cols = 8, mines = 10 }) {
 
       <button onClick={resetGame} className="border px-4 py-2 text-cyan-300">Reset</button>
 
-      <div className="grid gap-1 p-2 bg-black" style={{ gridTemplateColumns: `repeat(${cols}, 40px)` }}>
+      <div className="grid gap-1 p-2 bg-black" style={gridStyle}>
+
         {grid.map((row, r) =>
-          row.map((cell, c) => {
-            let content = "";
-            let bg = "bg-zinc-900 text-cyan-200";
-            let disabled = gameOver ? "opacity-50 cursor-not-allowed" : "";
-
-            if (cell.revealed) {
-              bg = cell.mine ? "bg-red-600" : "bg-zinc-700";
-              content = cell.mine
-                ? "💣"
-                : cell.adjacent > 0
-                ? cell.adjacent
-                : "";
-            } else if (cell.flagged) {
-              content = "🚩";
-              bg = "bg-blue-500";
-            }
-
-            return (
-              <div key={`${r}-${c}`}
-                onClick={() => reveal(r, c, null, true)}
-                onContextMenu={(e) => toggleFlag(e, r, c)}
-                className={`flex h-10 w-10 items-center justify-center border text-lg font-bold ${bg} ${disabled}`}>
-                {content}
-              </div>
-            );
-          })
+          row.map((cell, c) => (
+            <Cell
+              key={`${r}-${c}`}
+              cell={cell}
+              r={r}
+              c={c}
+              gameOver={gameOver}
+              reveal={reveal}
+              toggleFlag={toggleFlag}
+            />
+          ))
         )}
+
       </div>
     </div>
   );

@@ -85,6 +85,7 @@ This project is complete. Currently the highscores page is just for display, fur
 
 ## TO DO:
 
-- [ ] optimize game performance
+- [x] optimize game performance
 - [ ] add highscores submission
 - [ ] remove block of dark bg on game page, full screen
+- [ ] further optimization with zustand store
