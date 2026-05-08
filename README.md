@@ -90,3 +90,4 @@ This project is complete. Currently the highscores page is just for display, fur
 - [ ] add highscores submission
 - [ ] remove block of dark bg on game page, full screen
 - [x] further optimization with zustand store
+- [ ] download to desktop
