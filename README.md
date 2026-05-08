@@ -1,6 +1,6 @@
 # Minesweeper 2.0
 
-## 📚 Table of Contents
+## Table of Contents
 
 - [Description](#description)
 - [Badges](#badges)
@@ -13,17 +13,17 @@
 - [License](#license)
 - [Project Status](#project-status)
 
-## 📌 Description
+## Description
 
-This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app. The database of users was removed and styling was enhanced. 
+This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app, using a zustand store. The database of users was removed and styling was enhanced. 
 
-## 🏷️ Badges
+## Badges
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black.svg?style=for-the-badge&logo=next.js&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white)
 
-## 🖼️ Visuals
+## Visuals
 
 This app has been deployed to Vercel. Visit the site: [Minesweeper Next.js](https://nx-minesweeper.vercel.app/)
 
@@ -31,7 +31,7 @@ This app has been deployed to Vercel. Visit the site: [Minesweeper Next.js](http
 ![pic2](https://github.com/user-attachments/assets/78a042ff-8b67-4f14-8759-2fcb28dd8bd4)
 ![pic4](https://github.com/user-attachments/assets/74a9d0e0-6ab2-4911-9d22-1ddda94e0905)
 
-## ⚙️ Installation
+## Installation
 
 Play through app site, no installation required. Otherwise clone into local machine and open on IDE:
 
@@ -53,12 +53,13 @@ npm run start
 
 - Next.js
 - Tailwind CSS
+- Zustand
 - Vercel 
 - Connected to neon (green) PostgreSQL DB (currently unused)
 
 ## Support
 
-For support, users can contact tydamon@hotmail.com.
+For support, users can contact me through my portfolio contact form: [here](https://next-portfolio-sifzerdas-projects.vercel.app/contact)
 
 ## Contributing
 
@@ -88,4 +89,4 @@ This project is complete. Currently the highscores page is just for display, fur
 - [x] optimize game performance
 - [ ] add highscores submission
 - [ ] remove block of dark bg on game page, full screen
-- [ ] further optimization with zustand store
+- [x] further optimization with zustand store
