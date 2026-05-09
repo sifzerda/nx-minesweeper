@@ -70,10 +70,16 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400">
+              className="border border-cyan-400/40 bg-cyan-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 transition-all duration-200 hover:text-cyan-300 hover:border-cyan-400">
               {item.label}
             </Link>
           ))}
+
+          {/* DOWNLOAD BUTTON */}
+          <a href="/Minesweeper.exe" download className=
+          "border border-green-400/40 bg-green-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 transition-all duration-200 hover:text-green-400 hover:border-green-400">
+            Download
+          </a>
 
         </nav>
       </div>
@@ -84,9 +90,9 @@ export default function Header() {
           border-t border-cyan-500/20 bg-black/95
           transform transition-all duration-200 ease-out
           ${open
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 -translate-y-2 pointer-events-none"
-          }
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 -translate-y-2 pointer-events-none"
+        }
         `}>
         <div className="flex flex-col px-4 py-3 gap-2">
           {navItems.map((item) => (
