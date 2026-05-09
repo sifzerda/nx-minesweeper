@@ -1,5 +1,7 @@
 "use client";
 
+import { redirect } from "next/navigation";
+
 const legacyStack = [
     "Fullstack App",
     "React",
@@ -24,7 +26,16 @@ const currentStack = [
     "Vercel",
 ];
 
+
+
 export default function AboutPage() {
+
+    const isDesktop = typeof window !== "undefined" && window.__TAURI__;
+if (isDesktop) {
+    window.location.href = "/";
+    return null;
+}
+
     return (
         <main className="relative overflow-hidden bg-black text-white">
 

@@ -9,10 +9,15 @@ export default function Header() {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
-  const navItems = [
-    { label: "PLAY", href: "/" },
-    { label: "ABOUT", href: "/about" },
-  ];
+    // detect Tauri desktop app
+  const isDesktop = typeof window !== "undefined" && window.__TAURI__;
+
+const navItems = isDesktop
+  ? [{ label: "PLAY", href: "/" }]
+  : [
+      { label: "PLAY", href: "/" },
+      { label: "ABOUT", href: "/about" },
+    ];
 
   // outside click close
   useEffect(() => {
@@ -80,6 +85,17 @@ export default function Header() {
           "border border-green-400/40 bg-green-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 transition-all duration-200 hover:text-green-400 hover:border-green-400">
             Download
           </a>
+
+            {/* ONLY SHOW DOWNLOAD ON WEBSITE */}
+          {!isDesktop && (
+            <a
+              href="/Minesweeper.exe"
+              download
+              className="border border-green-400/40 bg-green-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 transition-all duration-200 hover:text-green-400 hover:border-green-400"
+            >
+              Download
+            </a>
+          )}
 
         </nav>
       </div>
