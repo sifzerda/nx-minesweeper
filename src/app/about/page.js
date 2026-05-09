@@ -1,5 +1,29 @@
 "use client";
 
+const legacyStack = [
+    "Fullstack App",
+    "React",
+    "Custom CSS",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "GraphQL",
+    "Heroku",
+    "Service Worker",
+];
+
+const currentStack = [
+    "Serverless Front-End",
+    "Next.js",
+    "Tailwind",
+    "Node.js",
+    "Zustand",
+    "Webpack",
+    "Rust",
+    "Tauri",
+    "Vercel",
+];
+
 export default function AboutPage() {
     return (
         <main className="relative overflow-hidden bg-black text-white min-h-screen">
@@ -12,35 +36,18 @@ export default function AboutPage() {
 
             {/* Content */}
             <div className="relative z-10 flex items-center justify-center px-4 sm:px-6">
-
                 <div className="w-full max-w-4xl rounded-[30px] border border-cyan-500/20 bg-black/60 p-4 sm:p-6 md:p-8 backdrop-blur-2xl shadow-[0_0_80px_rgba(34,211,238,0.15)]">
 
                     {/* Header */}
                     <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-cyan-400">
-
-                        <p className="text-cyan-300 border border-cyan-300/20 bg-cyan-300/10 px-2 sm:px-3 py-1">
-                            system://node
-                        </p>
-
-                        <p className="text-cyan-400 border border-cyan-400/20 bg-cyan-400/10 px-2 sm:px-3 py-1">
-                            react://next.js
-                        </p>
-
-                        <p className="text-cyan-500 border border-cyan-500/20 bg-cyan-500/10 px-2 sm:px-3 py-1">
-                            wrapper://tauri
-                        </p>
-
-                        <p className="text-cyan-600 border border-cyan-600/20 bg-cyan-600/10 px-2 sm:px-3 py-1">
-                            status:// <span className="text-cyan-700">vercel : </span>
-                            <span className="text-green-400 animate-pulse">online</span>
-                        </p>
-
+                        <p className="text-cyan-300 border border-cyan-300/20 bg-cyan-300/10 px-2 sm:px-3 py-1">system://node</p>
+                        <p className="text-cyan-400 border border-cyan-400/20 bg-cyan-400/10 px-2 sm:px-3 py-1">react://next.js</p>
+                        <p className="text-cyan-500 border border-cyan-500/20 bg-cyan-500/10 px-2 sm:px-3 py-1">wrapper://tauri</p>
+                        <p className="text-cyan-600 border border-cyan-600/20 bg-cyan-600/10 px-2 sm:px-3 py-1">status:// <span className="text-cyan-700">vercel : </span><span className="text-green-400 animate-pulse">online</span></p>
                     </div>
 
                     {/* Title */}
-                    <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] font-black uppercase tracking-[-0.06em] sm:tracking-[-0.08em] text-white">
-                        ABOUT
-                    </h1>
+                    <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] font-black uppercase tracking-[-0.06em] sm:tracking-[-0.08em] text-white">ABOUT</h1>
 
                     {/* Description */}
                     <div className="mb-4 max-w-3xl">
@@ -57,7 +64,6 @@ export default function AboutPage() {
 
                         {/* LEGACY */}
                         <section className="relative overflow-hidden rounded-[28px] border border-cyan-500/15 bg-black/50 backdrop-blur-xl">
-
                             <div className="relative border-b border-cyan-500/10 px-4 sm:px-6 py-4 sm:py-5">
 
                                 <div className="mb-2 flex items-center gap-2">
@@ -66,41 +72,19 @@ export default function AboutPage() {
                                     <div className="h-2 w-2 rounded-full bg-cyan-400" />
                                 </div>
 
-                                <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-green-500">
-                                    legacy://build
-                                </p>
-
-                                <h2 className="mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-black text-green-500">
-                                    Minesweeper 1.0
-                                </h2>
+                                <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-green-500">legacy://build</p>
+                                <h2 className="mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-black text-green-500">Minesweeper 1.0</h2>
 
                             </div>
 
                             <div className="relative p-2 sm:p-3 md:p-4">
 
                                 <ol className="space-y-2">
-
-                                    {[
-                                        "Fullstack App",
-                                        "React",
-                                        "Custom CSS",
-                                        "Node.js",
-                                        "Express.js",
-                                        "MongoDB",
-                                        "GraphQL",
-                                        "Heroku",
-                                        "Service Worker"
-                                    ].map((item) => (
-                                        <li
-                                            key={item}
-                                            className="flex items-center rounded-2xl border border-cyan-500/10 bg-black/40 px-3 sm:px-4 py-2 sm:py-1 hover:border-cyan-400/40 hover:bg-cyan-500/[0.05]"
-                                        >
-                                            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em]">
-                                                {item}
-                                            </span>
+                                    {legacyStack.map((item) => (
+                                        <li key={item} className="flex items-center rounded-2xl border border-cyan-500/10 bg-black/40 px-3 sm:px-4 py-2 sm:py-1 hover:border-cyan-400/40 hover:bg-cyan-500/[0.05]">
+                                            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em]">{item}</span>
                                         </li>
                                     ))}
-
                                 </ol>
 
                             </div>
@@ -109,7 +93,6 @@ export default function AboutPage() {
 
                         {/* CURRENT */}
                         <section className="relative overflow-hidden rounded-[28px] border border-cyan-500/15 bg-black/50 backdrop-blur-xl">
-
                             <div className="relative border-b border-cyan-500/10 px-4 sm:px-6 py-4 sm:py-5">
 
                                 <div className="mb-2 flex items-center gap-2">
@@ -118,41 +101,18 @@ export default function AboutPage() {
                                     <div className="h-2 w-2 rounded-full bg-cyan-300" />
                                 </div>
 
-                                <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-cyan-400">
-                                    current://build
-                                </p>
-
-                                <h2 className="mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-black text-cyan-400">
-                                    Minesweeper 2.0
-                                </h2>
+                                <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-cyan-400">current://build</p>
+                                <h2 className="mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-black text-cyan-400">Minesweeper 2.0</h2>
 
                             </div>
 
                             <div className="relative p-2 sm:p-3 md:p-4">
-
                                 <ol className="space-y-2">
-
-                                    {[
-                                        "Serverless Front-End",
-                                        "Next.js",
-                                        "Tailwind",
-                                        "Node.js",
-                                        "Zustand",
-                                        "Webpack",
-                                        "Rust",
-                                        "Tauri",
-                                        "Vercel"
-                                    ].map((item) => (
-                                        <li
-                                            key={item}
-                                            className="flex items-center rounded-2xl border border-cyan-500/10 bg-black/40 px-3 sm:px-4 py-2 sm:py-1 hover:border-green-400/40 hover:bg-green-500/[0.05]"
-                                        >
-                                            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em]">
-                                                {item}
-                                            </span>
+                                    {currentStack.map((item) => (
+                                        <li key={item} className="flex items-center rounded-2xl border border-cyan-500/10 bg-black/40 px-3 sm:px-4 py-2 sm:py-1 hover:border-green-400/40 hover:bg-green-500/[0.05]">
+                                            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em]">{item}</span>
                                         </li>
                                     ))}
-
                                 </ol>
 
                             </div>
