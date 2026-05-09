@@ -33,7 +33,7 @@ This app has been deployed to Vercel. Visit the site: [Minesweeper Next.js](http
 
 ## Installation
 
-Play through app site, no installation required. Otherwise clone into local machine and open on IDE:
+Visit site and download onto desktop through link.
 
 ```bash
 # clone the repo
