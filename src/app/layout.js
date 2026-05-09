@@ -28,7 +28,15 @@ const spaceMono = Space_Mono({
 
 export const metadata = {
   title: "Minesweeper",
+  manifest: "/manifest.json",
   description: "A game of Minesweeper in create next app",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  "theme_color": "#06b6d4",
 };
 
 export default function RootLayout({ children }) {
@@ -47,7 +55,7 @@ export default function RootLayout({ children }) {
         <main className="flex-1">{children}</main>
 
         <Footer />
-        
+
       </body>
     </html>
   );

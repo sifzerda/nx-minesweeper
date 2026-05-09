@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-
+  const [installPrompt, setInstallPrompt] = useState(null);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -36,6 +36,31 @@ export default function Header() {
     };
   }, [open]);
 
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handler);
+    };
+  }, []);
+
+  async function handleInstall() {
+    if (!installPrompt) return;
+
+    installPrompt.prompt();
+
+    const choice = await installPrompt.userChoice;
+
+    if (choice.outcome === "accepted") {
+      setInstallPrompt(null);
+    }
+  }
+
   return (
     <header className="relative z-20 overflow-visible border-b border-cyan-500/20 bg-black/80">
 
@@ -55,21 +80,14 @@ export default function Header() {
           </div>
 
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-400">
-              Neural Interface Active
-            </p>
-            <h2 className="text-2xl font-bold uppercase tracking-[0.2em] text-white">
-              Minesweeper.exe
-            </h2>
+            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-400">Neural Interface Active</p>
+            <h2 className="text-2xl font-bold uppercase tracking-[0.2em] text-white">Minesweeper.exe</h2>
           </div>
         </div>
 
         {/* HAMBURGER */}
-        <button
-          ref={buttonRef}
-          className="md:hidden text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
-          onClick={() => setOpen((prev) => !prev)}
-        >
+        <button ref={buttonRef} className="md:hidden text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
+          onClick={() => setOpen((prev) => !prev)}>
           {open ? "Close" : "Menu"}
         </button>
 
@@ -79,18 +97,21 @@ export default function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400"
-            >
+              className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400">
               {item.label}
             </Link>
           ))}
+
+          {installPrompt && (
+            <button onClick={handleInstall} className="border border-cyan-400 bg-cyan-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-cyan-300 hover:bg-cyan-500/20 cursor-pointer">
+              Install App
+            </button>
+          )}
         </nav>
       </div>
 
       {/* MOBILE MENU (always rendered for animation) */}
-      <div
-        ref={menuRef}
-        className={`
+      <div ref={menuRef} className={`
           md:hidden absolute left-0 top-full w-full z-50
           border-t border-cyan-500/20 bg-black/95
           transform transition-all duration-200 ease-out
@@ -98,19 +119,24 @@ export default function Header() {
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-2 pointer-events-none"
           }
-        `}
-      >
+        `}>
         <div className="flex flex-col px-4 py-3 gap-2">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-3 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400"
-            >
+              className="border border-cyan-500/20 bg-zinc-900/60 px-4 py-3 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 hover:text-cyan-300 hover:border-cyan-400">
               {item.label}
             </Link>
           ))}
+
+          {installPrompt && (
+            <button onClick={() => {handleInstall(); setOpen(false); }}
+              className="border border-cyan-400 bg-cyan-500/10 px-4 py-3 font-mono text-xs uppercase tracking-[0.25em] text-cyan-300 hover:bg-cyan-500/20 text-left">
+              Install App
+            </button>
+          )}
         </div>
       </div>
 

@@ -15,7 +15,7 @@ export default function HighScoresPage() {
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_70%_60%,rgba(59,130,246,0.12),transparent_40%)]" />
-        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(6,182,212,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:70px_70px]" />
+        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(6,182,212,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-size[70px_70px]" />
       </div>
 
       {/* Content */}

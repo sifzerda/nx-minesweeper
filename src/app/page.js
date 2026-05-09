@@ -13,7 +13,7 @@ export default function HomePage() {
         <div className="absolute right-[12%] top-[20%] h-52 w-52 sm:h-80 sm:w-80 rounded-full bg-blue-500/10 blur-[140px]" />
         <div className="absolute bottom-[10%] left-[35%] h-60 w-60 sm:h-96 sm:w-96 rounded-full bg-cyan-400/5 blur-[180px]" />
 
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:80px_80px] opacity-20" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-size[80px_80px] opacity-20" />
 
         <div className="absolute inset-0 opacity-[0.04] mix-blend-screen">
           <div className="h-full w-full bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.08)_3px)]" />
@@ -22,11 +22,11 @@ export default function HomePage() {
 
       {/* Main */}
       <div className="relative z-10 flex items-center justify-center px-1 py-1 sm:px-2 sm:py-1">
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-16 overflow-hidden rounded-[24px] sm:rounded-[32px] lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-10 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30" />
+        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-16 overflow-hidden rounded-3xl sm:rounded-4xl lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-10 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-size[40px_40px] opacity-30" />
 
-          <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
-          <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-transparent via-blue-500 to-transparent shadow-[0_0_25px_rgba(59,130,246,0.9)]" />
+          <div className="absolute left-0 top-0 h-1 w-full bg-linear-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
+          <div className="absolute bottom-0 left-0 h-1 w-full bg-linear-to-r from-transparent via-blue-500 to-transparent shadow-[0_0_25px_rgba(59,130,246,0.9)]" />
 
           {/* Minesweeper */}
           <div className="relative w-full max-w-full overflow-hidden rounded-[20px] sm:rounded-[28px] border border-cyan-500/30 bg-black/90 px-3 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6 shadow-[0_0_60px_rgba(34,211,238,0.22)] backdrop-blur-xl lg:w-auto">
@@ -66,8 +66,8 @@ export default function HomePage() {
 
             </div>
 
-            <div className="absolute right-0 top-0 hidden lg:block h-[2px] w-40 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.9)]" />
-            <div className="absolute bottom-0 left-0 hidden lg:block h-[2px] w-52 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.9)]" />
+            <div className="absolute right-0 top-0 hidden lg:block h-0.5 w-40 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.9)]" />
+            <div className="absolute bottom-0 left-0 hidden lg:block h-0.5 w-52 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.9)]" />
 
             <div className="uppercase leading-none">
 

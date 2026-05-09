@@ -54,6 +54,8 @@ npm run start
 - Next.js
 - Tailwind CSS
 - Zustand
+- Webpack
+- Service Worker
 - Vercel 
 - Connected to neon (green) PostgreSQL DB (currently unused)
 
@@ -90,4 +92,5 @@ This project is complete. Currently the highscores page is just for display, fur
 - [ ] add highscores submission
 - [ ] remove block of dark bg on game page, full screen
 - [x] further optimization with zustand store
-- [ ] download to desktop
+- [x] PWA: download to desktop
+- [ ] wrap with Electron or Tauri

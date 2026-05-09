@@ -8,12 +8,8 @@ export default function Footer() {
 
       <div className="relative mx-auto flex max-w-7xl flex-row items-center justify-between gap-3 sm:gap-4 md:gap-6 px-3 py-3">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.45em] text-cyan-500">
-            Digital Archive Node
-          </p>
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-500">
-            Built with Next.js.
-          </p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.45em] text-cyan-500">Digital Archive Node</p>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-zinc-500">Built with Next.js.</p>
         </div>
 
         <div className="flex items-center gap-6">
