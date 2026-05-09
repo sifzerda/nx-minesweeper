@@ -21,7 +21,7 @@ This is a rebuild and refactor of my first fullstack minesweeper game into a ser
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) 
 
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black.svg?style=for-the-badge&logo=next.js&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black.svg?style=for-the-badge&logo=next.js&logoColor=white) ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black) ![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white) ![Tauri](https://img.shields.io/badge/tauri-%2324C8DB.svg?style=for-the-badge&logo=tauri&logoColor=%23FFFFFF)
 
 ## Visuals
 
@@ -33,7 +33,7 @@ This app has been deployed to Vercel. Visit the site: [Minesweeper Next.js](http
 
 ## Installation
 
-Visit site and download onto desktop through link.
+Visit site and download Native desktop .exe through link. Otherwise you can clone the repo onto pc:
 
 ```bash
 # clone the repo
@@ -54,10 +54,11 @@ npm run start
 - Next.js
 - Tailwind CSS
 - Zustand
-- Webpack
-- Service Worker
 - Vercel 
-- Connected to neon (green) PostgreSQL DB (currently unused)
+- Webpack
+- ~~Service Worker~~
+- Rust
+- Tauri
 
 ## Support
 
@@ -84,12 +85,11 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 ## Project status
 
-This project is complete. Currently the highscores page is just for display, further development is needed to allow users to submit their scores.
+This project is complete. Currently wrapping in Tauri for offline desktop play.
 
 ## TO DO:
 
 - [x] optimize game performance
-- [ ] add highscores submission
 - [ ] remove block of dark bg on game page, full screen
 - [x] further optimization with zustand store
 - [x] PWA: download to desktop

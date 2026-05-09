@@ -13,7 +13,6 @@ export default function Header() {
   const navItems = [
     { label: "PLAY", href: "/" },
     { label: "ABOUT", href: "/about" },
-    { label: "HIGHSCORES", href: "/highscores" },
   ];
 
   // outside click close
