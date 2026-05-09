@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [installPrompt, setInstallPrompt] = useState(null);
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -34,31 +33,6 @@ export default function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [open]);
-
-  useEffect(() => {
-    const handler = (e) => {
-      e.preventDefault();
-      setInstallPrompt(e);
-    };
-
-    window.addEventListener("beforeinstallprompt", handler);
-
-    return () => {
-      window.removeEventListener("beforeinstallprompt", handler);
-    };
-  }, []);
-
-  async function handleInstall() {
-    if (!installPrompt) return;
-
-    installPrompt.prompt();
-
-    const choice = await installPrompt.userChoice;
-
-    if (choice.outcome === "accepted") {
-      setInstallPrompt(null);
-    }
-  }
 
   return (
     <header className="relative z-20 overflow-visible border-b border-cyan-500/20 bg-black/80">
@@ -101,11 +75,6 @@ export default function Header() {
             </Link>
           ))}
 
-          {installPrompt && (
-            <button onClick={handleInstall} className="border border-cyan-400 bg-cyan-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-cyan-300 hover:bg-cyan-500/20 cursor-pointer">
-              Install App
-            </button>
-          )}
         </nav>
       </div>
 
@@ -130,12 +99,6 @@ export default function Header() {
             </Link>
           ))}
 
-          {installPrompt && (
-            <button onClick={() => {handleInstall(); setOpen(false); }}
-              className="border border-cyan-400 bg-cyan-500/10 px-4 py-3 font-mono text-xs uppercase tracking-[0.25em] text-cyan-300 hover:bg-cyan-500/20 text-left">
-              Install App
-            </button>
-          )}
         </div>
       </div>
 

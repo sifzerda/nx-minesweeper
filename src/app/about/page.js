@@ -2,55 +2,168 @@
 
 export default function AboutPage() {
     return (
-        <main className="relative overflow-hidden bg-black text-white">
+        <main className="relative overflow-hidden bg-black text-white min-h-screen">
 
-            {/* Background (same style as home) */}
+            {/* Background */}
             <div className="absolute inset-0">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.12),transparent_30%),radial-gradient(circle_at_80%_30%,rgba(59,130,246,0.12),transparent_35%)]" />
                 <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,rgba(6,182,212,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:80px_80px]" />
             </div>
 
             {/* Content */}
-            <div className="relative z-10 flex items-center justify-center px-6 py-20">
-                <div className="w-full max-w-4xl rounded-[30px] border border-cyan-500/20 bg-black/60 p-8 backdrop-blur-2xl shadow-[0_0_80px_rgba(34,211,238,0.15)]">
+            <div className="relative z-10 flex items-center justify-center px-4 sm:px-6">
+
+                <div className="w-full max-w-4xl rounded-[30px] border border-cyan-500/20 bg-black/60 p-4 sm:p-6 md:p-8 backdrop-blur-2xl shadow-[0_0_80px_rgba(34,211,238,0.15)]">
 
                     {/* Header */}
-                    <div className="mb-8 font-mono text-xs tracking-[0.4em] text-cyan-400 uppercase space-y-1 opacity-90">
-                        <p className="text-cyan-300">system://node</p>
-                        <p className="text-cyan-400">react://next.js</p>
-                        <p className="text-cyan-500">db:prisma</p>
-                        <p className="text-cyan-600">status://
-                            <span className="text-green-400">connected : </span>
-                            <span className="text-amber-400 animate-pulse">standby</span>
+                    <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-cyan-400">
+
+                        <p className="text-cyan-300 border border-cyan-300/20 bg-cyan-300/10 px-2 sm:px-3 py-1">
+                            system://node
                         </p>
-                        <h1 className="mt-4 text-[3rem] font-light tracking-[-0.08em]">
-                            about
-                        </h1>
+
+                        <p className="text-cyan-400 border border-cyan-400/20 bg-cyan-400/10 px-2 sm:px-3 py-1">
+                            react://next.js
+                        </p>
+
+                        <p className="text-cyan-500 border border-cyan-500/20 bg-cyan-500/10 px-2 sm:px-3 py-1">
+                            wrapper://tauri
+                        </p>
+
+                        <p className="text-cyan-600 border border-cyan-600/20 bg-cyan-600/10 px-2 sm:px-3 py-1">
+                            status:// <span className="text-cyan-700">vercel : </span>
+                            <span className="text-green-400 animate-pulse">online</span>
+                        </p>
+
                     </div>
 
-                    {/* Body */}
-                    <div className="space-y-6 text-sm leading-relaxed text-cyan-100/80">
-                        <p>
-                            This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app.
-                        </p>
+                    {/* Title */}
+                    <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] font-black uppercase tracking-[-0.06em] sm:tracking-[-0.08em] text-white">
+                        ABOUT
+                    </h1>
 
-                        <p>
-                            Overall styling and GUI was changed and enhanced to look futuristic. The previous mongoDB of users and scores was removed and this app is connected to a 
-                            (currently unused) Postgres-Neon DB. 
-                        </p>
-
-                        <p>
-                            The scoreboard is currently display only, but future development will aim to add user accounts and score submission.
+                    {/* Description */}
+                    <div className="mb-4 max-w-3xl">
+                        <p className="text-[11px] sm:text-xs md:text-base leading-relaxed text-cyan-100/75">
+                            This project is a rebuild and refactor of my original
+                            React fullstack Minesweeper application into a modern
+                            serverless Next.js experience with a native desktop wrapper
+                            powered by Rust and Tauri.
                         </p>
                     </div>
 
-                    {/* Terminal footer */}
-                    <div className="mt-10 border-t border-cyan-500/20 pt-6 font-mono text-xs text-cyan-400/60">
-                        STATUS: ONLINE • CORE STABLE • LATENCY LOW
+                    {/* STACKS */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+
+                        {/* LEGACY */}
+                        <section className="relative overflow-hidden rounded-[28px] border border-cyan-500/15 bg-black/50 backdrop-blur-xl">
+
+                            <div className="relative border-b border-cyan-500/10 px-4 sm:px-6 py-4 sm:py-5">
+
+                                <div className="mb-2 flex items-center gap-2">
+                                    <div className="h-2 w-2 rounded-full bg-green-500" />
+                                    <div className="h-2 w-2 rounded-full bg-green-400" />
+                                    <div className="h-2 w-2 rounded-full bg-cyan-400" />
+                                </div>
+
+                                <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-green-500">
+                                    legacy://build
+                                </p>
+
+                                <h2 className="mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-black text-green-500">
+                                    Minesweeper 1.0
+                                </h2>
+
+                            </div>
+
+                            <div className="relative p-2 sm:p-3 md:p-4">
+
+                                <ol className="space-y-2">
+
+                                    {[
+                                        "Fullstack App",
+                                        "React",
+                                        "Custom CSS",
+                                        "Node.js",
+                                        "Express.js",
+                                        "MongoDB",
+                                        "GraphQL",
+                                        "Heroku",
+                                        "Service Worker"
+                                    ].map((item) => (
+                                        <li
+                                            key={item}
+                                            className="flex items-center rounded-2xl border border-cyan-500/10 bg-black/40 px-3 sm:px-4 py-2 sm:py-1 hover:border-cyan-400/40 hover:bg-cyan-500/[0.05]"
+                                        >
+                                            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em]">
+                                                {item}
+                                            </span>
+                                        </li>
+                                    ))}
+
+                                </ol>
+
+                            </div>
+
+                        </section>
+
+                        {/* CURRENT */}
+                        <section className="relative overflow-hidden rounded-[28px] border border-cyan-500/15 bg-black/50 backdrop-blur-xl">
+
+                            <div className="relative border-b border-cyan-500/10 px-4 sm:px-6 py-4 sm:py-5">
+
+                                <div className="mb-2 flex items-center gap-2">
+                                    <div className="h-2 w-2 rounded-full bg-cyan-600" />
+                                    <div className="h-2 w-2 rounded-full bg-cyan-400" />
+                                    <div className="h-2 w-2 rounded-full bg-cyan-300" />
+                                </div>
+
+                                <p className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-cyan-400">
+                                    current://build
+                                </p>
+
+                                <h2 className="mt-1 sm:mt-2 text-xl sm:text-2xl md:text-3xl font-black text-cyan-400">
+                                    Minesweeper 2.0
+                                </h2>
+
+                            </div>
+
+                            <div className="relative p-2 sm:p-3 md:p-4">
+
+                                <ol className="space-y-2">
+
+                                    {[
+                                        "Serverless Front-End",
+                                        "Next.js",
+                                        "Tailwind",
+                                        "Node.js",
+                                        "Zustand",
+                                        "Webpack",
+                                        "Rust",
+                                        "Tauri",
+                                        "Vercel"
+                                    ].map((item) => (
+                                        <li
+                                            key={item}
+                                            className="flex items-center rounded-2xl border border-cyan-500/10 bg-black/40 px-3 sm:px-4 py-2 sm:py-1 hover:border-green-400/40 hover:bg-green-500/[0.05]"
+                                        >
+                                            <span className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.25em]">
+                                                {item}
+                                            </span>
+                                        </li>
+                                    ))}
+
+                                </ol>
+
+                            </div>
+
+                        </section>
+
                     </div>
 
                 </div>
             </div>
+
         </main>
     );
 }
