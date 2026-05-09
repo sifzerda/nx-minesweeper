@@ -15,7 +15,7 @@
 
 ## Description
 
-This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app, using a zustand store. The database of users was removed and styling was enhanced. 
+This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app, using a zustand store. The highscores page and database of users was removed and styling was enhanced. Rust and Tauri were added to create a downloadable .exe
 
 ## Badges
 
