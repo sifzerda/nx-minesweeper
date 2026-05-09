@@ -92,5 +92,5 @@ This project is complete. Currently wrapping in Tauri for offline desktop play.
 - [x] optimize game performance
 - [ ] remove block of dark bg on game page, full screen
 - [x] further optimization with zustand store
-- [x] PWA: download to desktop
-- [ ] wrap with Electron or Tauri
+- [x] ~~PWA: download to desktop~~ 
+- [x] wrap with Tauri
