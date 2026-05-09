@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "nx-minesweeper",
+  "productName": "minesweeper by sifzerda",
   "version": "0.1.0",
   "identifier": "com.sifzerda.minesweeper",
   "build": {
@@ -12,9 +12,9 @@
   "app": {
     "windows": [
       {
-        "title": "nx-minesweeper",
-        "width": 800,
-        "height": 600,
+        "title": "minesweeper by sifzerda",
+        "width": 1000,
+        "height": 750,
         "resizable": true,
         "fullscreen": false
       }

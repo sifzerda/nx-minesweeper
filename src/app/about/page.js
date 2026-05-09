@@ -26,7 +26,7 @@ const currentStack = [
 
 export default function AboutPage() {
     return (
-        <main className="relative overflow-hidden bg-black text-white min-h-screen">
+        <main className="relative overflow-hidden bg-black text-white">
 
             {/* Background */}
             <div className="absolute inset-0">
