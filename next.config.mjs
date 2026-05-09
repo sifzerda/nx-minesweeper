@@ -1,11 +1,8 @@
 // next.config.mjs
 
 const nextConfig = {
-  reactStrictMode: true,
-
-  // REQUIRED FOR TAURI
-  output: "export",
-
+  output: "export",  
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
