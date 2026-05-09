@@ -85,7 +85,7 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 ## Project status
 
-This project is complete. Currently wrapping in Tauri for offline desktop play.
+This project is complete.
 
 ## TO DO:
 
