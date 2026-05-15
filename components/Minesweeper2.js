@@ -69,7 +69,7 @@ const gridStyle = useMemo(() => {
 
       <button onClick={() => reset(rows, cols, mines)} className="border px-4 py-1 text-cyan-300"> Reset</button>
 
-<div className="w-full flex justify-center overflow-hidden px-2">
+<div className="w-full flex justify-center overflow-hidden px-0 sm:px-2">
   <div
     className="grid gap-[2px] p-1 bg-black max-w-full"
     style={gridStyle}

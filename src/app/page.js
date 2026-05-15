@@ -21,15 +21,48 @@ export default function HomePage() {
       </div>
 
       {/* Main */}
-      <div className="relative z-10 flex items-center justify-center px-1 py-1 sm:px-2 sm:py-1">
-        <div className="relative mx-auto flex w-full max-w-7xl flex-col-reverse lg:flex-row items-center justify-between gap-4 sm:gap-6 lg:gap-16 overflow-hidden rounded-3xl sm:rounded-4xl lg:rounded-[40px] border border-cyan-500/20 bg-black/50 p-3 sm:p-3 lg:p-10 shadow-[0_0_100px_rgba(34,211,238,0.12)] backdrop-blur-2xl">
+      <div className="relative z-10 flex items-center justify-center px-0 sm:px-2 py-1">
+        <div className="
+  relative
+  mx-auto
+  flex
+  w-full
+  min-w-0
+  max-w-7xl
+  flex-col-reverse
+  lg:flex-row
+  items-center
+  justify-between
+  gap-4 sm:gap-6 lg:gap-16
+  overflow-hidden
+  rounded-3xl sm:rounded-4xl lg:rounded-[40px]
+  border border-cyan-500/20
+  bg-black/50
+  p-2 sm:p-3 lg:p-10
+  shadow-[0_0_100px_rgba(34,211,238,0.12)]
+  backdrop-blur-2xl
+">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-size[40px_40px] opacity-30" />
 
           <div className="absolute left-0 top-0 h-1 w-full bg-linear-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
           <div className="absolute bottom-0 left-0 h-1 w-full bg-linear-to-r from-transparent via-blue-500 to-transparent shadow-[0_0_25px_rgba(59,130,246,0.9)]" />
 
           {/* Minesweeper */}
-          <div className="relative w-full max-w-full overflow-hidden rounded-[20px] sm:rounded-[28px] border border-cyan-500/30 bg-black/90 px-3 py-4 sm:px-6 sm:py-5 lg:px-8 lg:py-6 shadow-[0_0_60px_rgba(34,211,238,0.22)] backdrop-blur-xl lg:w-auto">
+          <div className="
+  relative
+  w-full
+  min-w-0
+  overflow-hidden
+  rounded-[18px] sm:rounded-[28px]
+  border border-cyan-500/30
+  bg-black/90
+  px-0 py-3
+  sm:px-4 sm:py-5
+  lg:px-8 lg:py-6
+  shadow-[0_0_60px_rgba(34,211,238,0.22)]
+  backdrop-blur-xl
+  lg:w-auto
+">
             <div className="absolute right-3 top-3 sm:right-4 sm:top-4 flex gap-2">
               <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
               <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.8)]" />
