@@ -15,7 +15,7 @@
 
 ## Description
 
-This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app, using a zustand store. The highscores page and database of users was removed and styling was enhanced. Rust and Tauri were added to create a downloadable .exe
+This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app, using a zustand store. The highscores page and database of users was removed and styling was enhanced. Rust and Tauri were added to create a downloadable .exe. Responsive styling was enhanced to enable viewing and play on mobile devices.
 
 ## Badges
 
@@ -56,7 +56,6 @@ npm run start
 - Zustand
 - Vercel 
 - Webpack
-- ~~Service Worker~~
 - Rust
 - Tauri
 
@@ -92,5 +91,4 @@ This project is complete.
 - [x] optimize game performance
 - [ ] remove block of dark bg on game page, full screen
 - [x] further optimization with zustand store
-- [x] ~~PWA: download to desktop~~ 
 - [x] wrap with Tauri
