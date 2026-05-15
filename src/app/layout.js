@@ -28,7 +28,7 @@ const spaceMono = Space_Mono({
 
 export const metadata = {
   title: "Minesweeper",
-  manifest: "/manifest.json",
+  // manifest: "/manifest.json",
   description: "A game of Minesweeper in create next app",
 };
 
