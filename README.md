@@ -92,4 +92,4 @@ This project is complete, but future development enhancements are possible.
 - [ ] remove block of dark bg on game page, full screen
 - [x] further optimization with zustand store
 - [x] wrap with Tauri
-- [ ] make medium and hard difficulty, increase size of minefield
+- [ ] make medium and hard difficulty, increase size of minefield (bigger grid sizes won't be playable on mobile)

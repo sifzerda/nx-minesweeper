@@ -43,16 +43,14 @@ export default function Minesweeper({
     return count;
   }, [grid]);
 
-const cellSize = cols > 10
-  ? "clamp(24px, 7vw, 40px)"
-  : "clamp(30px, 9vw, 40px)";
+const gridStyle = useMemo(() => {
+  const size = `min(40px, calc((100vw - 32px) / ${cols}))`;
 
-const gridStyle = useMemo(
-  () => ({
-    gridTemplateColumns: `repeat(${cols}, ${cellSize})`,
-  }),
-  [cols]
-);
+  return {
+    gridTemplateColumns: `repeat(${cols}, ${size})`,
+    gridAutoRows: size,
+  };
+}, [cols]);
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -71,9 +69,9 @@ const gridStyle = useMemo(
 
       <button onClick={() => reset(rows, cols, mines)} className="border px-4 py-1 text-cyan-300"> Reset</button>
 
-<div className="max-w-full overflow-x-auto">
+<div className="w-full flex justify-center overflow-hidden px-2">
   <div
-    className="grid gap-1 p-2 bg-black w-fit mx-auto"
+    className="grid gap-[2px] p-1 bg-black max-w-full"
     style={gridStyle}
   >
     {grid.map((row, r) =>
