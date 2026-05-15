@@ -1,7 +1,5 @@
 "use client";
 
-import { redirect } from "next/navigation";
-
 const legacyStack = [
     "Fullstack App",
     "React",
@@ -31,10 +29,10 @@ const currentStack = [
 export default function AboutPage() {
 
     const isDesktop = typeof window !== "undefined" && window.__TAURI__;
-if (isDesktop) {
-    window.location.href = "/";
-    return null;
-}
+    if (isDesktop) {
+        window.location.href = "/";
+        return null;
+    }
 
     return (
         <main className="relative overflow-hidden bg-black text-white">
@@ -55,6 +53,29 @@ if (isDesktop) {
                         <p className="text-cyan-400 border border-cyan-400/20 bg-cyan-400/10 px-2 sm:px-3 py-1">react://next.js</p>
                         <p className="text-cyan-500 border border-cyan-500/20 bg-cyan-500/10 px-2 sm:px-3 py-1">wrapper://tauri</p>
                         <p className="text-cyan-600 border border-cyan-600/20 bg-cyan-600/10 px-2 sm:px-3 py-1">status:// <span className="text-cyan-700">vercel : </span><span className="text-green-400 animate-pulse">online</span></p>
+                    </div>
+
+                    {/* HOW TO PLAY */}
+                    <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] font-black uppercase tracking-[-0.06em] sm:tracking-[-0.08em] text-white">How to Play</h1>
+
+                    <div className="mb-4 max-w-3xl space-y-4">
+
+                        <div>
+                            <h2 className="text-base sm:text-lg font-bold text-cyan-300 uppercase tracking-widest mb-2">Desktop</h2>
+                            <ul className="space-y-1 text-[11px] sm:text-xs md:text-sm leading-relaxed text-cyan-100/75 list-disc list-inside">
+                                <li>Left click a cell to reveal it</li>
+                                <li>Right click a cell to place or remove a flag</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h2 className="text-base sm:text-lg font-bold text-cyan-300 uppercase tracking-widest mb-2">Mobile</h2>
+                            <ul className="space-y-1 text-[11px] sm:text-xs md:text-sm leading-relaxed text-cyan-100/75 list-disc list-inside">
+                                <li>Tap a cell to reveal it</li>
+                                <li>Hold down a cell to place or remove a flag</li>
+                            </ul>
+                        </div>
+
                     </div>
 
                     {/* Title */}
