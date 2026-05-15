@@ -9,12 +9,12 @@ export default function Header() {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
-    // detect Tauri desktop app
+  // detect Tauri desktop app
   const isDesktop = typeof window !== "undefined" && window.__TAURI__;
 
-const navItems = isDesktop
-  ? [{ label: "PLAY", href: "/" }]
-  : [
+  const navItems = isDesktop
+    ? [{ label: "PLAY", href: "/" }]
+    : [
       { label: "PLAY", href: "/" },
       { label: "ABOUT", href: "/about" },
     ];
@@ -49,23 +49,32 @@ const navItems = isDesktop
       <div className="absolute right-0 top-0 h-full w-1 bg-blue-500" />
 
       {/* TOP BAR */}
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-4 py-2">
 
         {/* LEFT */}
-        <div className="flex items-center gap-5">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-500/10">
-            <div className="h-5 w-5 rounded-full bg-cyan-400" />
+        <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+
+          <div className="flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-500/10">
+            <div className="h-4 w-4 sm:h-5 sm:w-5 rounded-full bg-cyan-400" />
           </div>
 
-          <div>
-            <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-400">Neural Interface Active</p>
-            <h2 className="text-2xl font-bold uppercase tracking-[0.2em] text-white">Minesweeper.exe</h2>
+          <div className="min-w-0">
+            <p className="truncate font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.4em] text-cyan-400">
+              Neural Interface Active
+            </p>
+
+            <h2 className="truncate text-lg sm:text-2xl font-bold uppercase tracking-[0.08em] sm:tracking-[0.2em] text-white">
+              Minesweeper.exe
+            </h2>
           </div>
         </div>
 
         {/* HAMBURGER */}
-        <button ref={buttonRef} className="md:hidden text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
-          onClick={() => setOpen((prev) => !prev)}>
+        <button
+          ref={buttonRef}
+          className="md:hidden shrink-0 text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
+          onClick={() => setOpen((prev) => !prev)}
+        >
           {open ? "Close" : "Menu"}
         </button>
 
@@ -80,10 +89,10 @@ const navItems = isDesktop
             </Link>
           ))}
 
-            {/* ONLY SHOW DOWNLOAD ON WEBSITE */}
+          {/* ONLY SHOW DOWNLOAD ON WEBSITE */}
           {!isDesktop && (
             <a href="/Minesweeper.exe" download className=
-            "border border-green-400/40 bg-green-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 transition-all duration-200 hover:text-green-400 hover:border-green-400">
+              "border border-green-400/40 bg-green-500/10 px-4 py-2 font-mono text-xs uppercase tracking-[0.25em] text-zinc-400 transition-all duration-200 hover:text-green-400 hover:border-green-400">
               Download</a>
           )}
 
