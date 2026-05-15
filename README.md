@@ -84,7 +84,7 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 
 ## Project status
 
-This project is complete.
+This project is complete, but future development enhancements are possible.
 
 ## TO DO:
 
@@ -92,3 +92,4 @@ This project is complete.
 - [ ] remove block of dark bg on game page, full screen
 - [x] further optimization with zustand store
 - [x] wrap with Tauri
+- [ ] make medium and hard difficulty, increase size of minefield
