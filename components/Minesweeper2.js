@@ -43,12 +43,16 @@ export default function Minesweeper({
     return count;
   }, [grid]);
 
-  const gridStyle = useMemo(
-    () => ({
-      gridTemplateColumns: `repeat(${cols}, 40px)`,
-    }),
-    [cols]
-  );
+const cellSize = cols > 10
+  ? "clamp(24px, 7vw, 40px)"
+  : "clamp(30px, 9vw, 40px)";
+
+const gridStyle = useMemo(
+  () => ({
+    gridTemplateColumns: `repeat(${cols}, ${cellSize})`,
+  }),
+  [cols]
+);
 
   return (
     <div className="flex flex-col items-center gap-4">
@@ -56,28 +60,34 @@ export default function Minesweeper({
       {gameOver && (<span className="text-red-500 font-mono text-sm">Game Over!</span>)}
 
       {/* STATS BAR */}
-      <div className="flex flex-wrap gap-3 justify-center">
+      <div className="flex flex-wrap gap-2 justify-center text-xs sm:text-sm">
 
-        <div className="border px-3 py-1 text-cyan-300 font-mono"> ⏱ {time}</div>
-        <div className="border px-3 py-1 text-cyan-300 font-mono"> 🚩 {flags}</div>
-        <div className="border px-3 py-1 text-cyan-300 font-mono"> 💣 {mines}</div>
-        <div className="border px-3 py-1 text-cyan-300 font-mono"> 🧱 {clearedCells} / {totalCells}</div>
+        <div className="border px-2 sm:px-3 py-1 text-cyan-300 font-mono"> ⏱ {time}</div>
+        <div className="border px-2 sm:px-3 py-1 text-cyan-300 font-mono"> 🚩 {flags}</div>
+        <div className="border px-2 sm:px-3 py-1 text-cyan-300 font-mono"> 💣 {mines}</div>
+        <div className="border px-2 sm:px-3 py-1 text-cyan-300 font-mono"> 🧱 {clearedCells} / {totalCells}</div>
 
       </div>
 
       <button onClick={() => reset(rows, cols, mines)} className="border px-4 py-1 text-cyan-300"> Reset</button>
 
-      <div className="grid gap-1 p-2 bg-black" style={gridStyle}>
-        {grid.map((row, r) =>
-          row.map((_, c) => (
-            <Cell
-              key={`${r}-${c}`}
-              r={r}
-              c={c}
-            />
-          ))
-        )}
-      </div>
+<div className="max-w-full overflow-x-auto">
+  <div
+    className="grid gap-1 p-2 bg-black w-fit mx-auto"
+    style={gridStyle}
+  >
+    {grid.map((row, r) =>
+      row.map((_, c) => (
+        <Cell
+          key={`${r}-${c}`}
+          r={r}
+          c={c}
+        />
+      ))
+    )}
+  </div>
+</div>
+
     </div>
   );
 }
