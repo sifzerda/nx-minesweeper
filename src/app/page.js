@@ -62,14 +62,10 @@ export default function HomePage() {
   backdrop-blur-xl
   lg:w-auto
 ">
-            <div className="absolute right-3 top-3 sm:right-4 sm:top-4 flex gap-2">
-              <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
-              <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.8)]" />
-              <div className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
-            </div>
+
 
             <div className="mb-4 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.45em] text-cyan-500 text-center sm:text-left">
-              terminal://minesweeper_protocol
+              terminal://minesweeper
             </div>
 
             <Game />
@@ -80,21 +76,6 @@ export default function HomePage() {
 
             {/* STATUS CLUSTER (updated lights) */}
             <div className="mb-6 sm:mb-8 inline-flex flex-col items-center lg:items-end gap-2">
-
-              <div className="inline-flex items-center gap-3 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-4 py-2 sm:px-5 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.4em] text-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.15)]">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
-                network connected
-              </div>
-
-              {/* ROOT — ORANGE */}
-              <div className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.35em] text-orange-400 drop-shadow-[0_0_10px_rgba(251,146,60,0.9)]">
-                root@neural-core
-              </div>
-
-              {/* SECURE CHANNEL — BLUE */}
-              <div className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.35em]">
-                secure channel <span className=" text-blue-400 drop-shadow-[0_0_12px_rgba(59,130,246,0.9)]">online</span>
-              </div>
 
             </div>
 

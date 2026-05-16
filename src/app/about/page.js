@@ -24,8 +24,6 @@ const currentStack = [
     "Vercel",
 ];
 
-
-
 export default function AboutPage() {
 
     const isDesktop = typeof window !== "undefined" && window.__TAURI__;
@@ -46,14 +44,6 @@ export default function AboutPage() {
             {/* Content */}
             <div className="relative z-10 flex items-center justify-center px-4 sm:px-6">
                 <div className="w-full max-w-4xl rounded-[30px] border border-cyan-500/20 bg-black/60 p-4 sm:p-6 md:p-8 backdrop-blur-2xl shadow-[0_0_80px_rgba(34,211,238,0.15)]">
-
-                    {/* Header */}
-                    <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.35em] text-cyan-400">
-                        <p className="text-cyan-300 border border-cyan-300/20 bg-cyan-300/10 px-2 sm:px-3 py-1">system://node</p>
-                        <p className="text-cyan-400 border border-cyan-400/20 bg-cyan-400/10 px-2 sm:px-3 py-1">react://next.js</p>
-                        <p className="text-cyan-500 border border-cyan-500/20 bg-cyan-500/10 px-2 sm:px-3 py-1">wrapper://tauri</p>
-                        <p className="text-cyan-600 border border-cyan-600/20 bg-cyan-600/10 px-2 sm:px-3 py-1">status:// <span className="text-cyan-700">vercel : </span><span className="text-green-400 animate-pulse">online</span></p>
-                    </div>
 
                     {/* HOW TO PLAY */}
                     <h1 className="text-[1.8rem] sm:text-[2.2rem] md:text-[3rem] font-black uppercase tracking-[-0.06em] sm:tracking-[-0.08em] text-white">How to Play</h1>

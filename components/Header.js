@@ -49,7 +49,7 @@ export default function Header() {
       <div className="absolute right-0 top-0 h-full w-1 bg-blue-500" />
 
       {/* TOP BAR */}
-      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-4 py-2">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between px-3 sm:px-4">
 
         {/* LEFT */}
         <div className="flex min-w-0 items-center gap-3 sm:gap-5">
@@ -59,13 +59,12 @@ export default function Header() {
           </div>
 
           <div className="min-w-0">
-            <p className="truncate font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.4em] text-cyan-400">
-              Neural Interface Active
-            </p>
 
-            <h2 className="truncate text-lg sm:text-2xl font-bold uppercase tracking-[0.08em] sm:tracking-[0.2em] text-white">
-              Minesweeper.exe
-            </h2>
+              <h1 className="glitch-text    
+    text-[1.5rem] sm:text-[2rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]">
+                MINESWEEPER
+              </h1>
+
           </div>
         </div>
 
