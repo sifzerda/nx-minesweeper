@@ -236,11 +236,7 @@ while (queue.length) {
 
         const hasWon = revealedCount === rows * cols - mines;
 
-        set({grid: newGrid, flags: nextFlags, gameWon: hasWon,
-            timerActive: hasWon
-                ? false
-                : timerActive,
-        });
+        set({grid: newGrid, flags: nextFlags, gameWon: hasWon, timerActive: hasWon ? false : timerActive});
     },
 
     tick: () => {
