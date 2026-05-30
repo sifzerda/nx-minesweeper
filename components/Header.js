@@ -43,7 +43,7 @@ export default function Header() {
     <header className="relative z-20 overflow-visible border-b border-cyan-500/20 bg-black/80">
 
       {/* background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.06)_1px,transparent_1px)] bg-[size:60px_60px] opacity-40" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.06)_1px,transparent_1px)] bg-size-[60px_60px] opacity-40" />
 
       <div className="absolute left-0 top-0 h-full w-1 bg-cyan-400" />
       <div className="absolute right-0 top-0 h-full w-1 bg-blue-500" />
@@ -70,7 +70,7 @@ export default function Header() {
 
         {/* HAMBURGER */}
         <button ref={buttonRef}
-          className="md:hidden shrink-0 min-w-[90px] text-center text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
+          className="md:hidden shrink-0 min-w-22.5 text-center text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
           onClick={() => setOpen((prev) => !prev)}>
           {open ? "Close" : "Menu"}
         </button>
