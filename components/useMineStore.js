@@ -124,21 +124,9 @@ export const useMineStore = create((set, get) => ({
 
     reveal: (r, c) => {
 
-        const {
-            grid,
-            gameOver,
-            rows,
-            cols,
-            mines,
-            timerActive,
-            revealedCount,
-        } = get();
+        const {grid, gameOver, rows, cols, mines, timerActive, revealedCount} = get();
 
-        if (
-            gameOver ||
-            grid[r][c].revealed ||
-            grid[r][c].flagged
-        ) {
+        if (gameOver || grid[r][c].revealed || grid[r][c].flagged) {
             return;
         }
 
@@ -151,102 +139,69 @@ export const useMineStore = create((set, get) => ({
         const newGrid = [...grid];
         const clonedRows = new Set();
 
-        const visited =
-            new Uint8Array(rows * cols);
+        const visited = new Uint8Array(rows * cols);
 
-        const queue = [[r, c]];
+const queue = [r, c];
 
-        while (queue.length) {
+while (queue.length) {
 
-            const [rr, cc] = queue.pop();
+    const cc = queue.pop();
+    const rr = queue.pop();
 
-            if (
-                rr < 0 ||
-                rr >= rows ||
-                cc < 0 ||
-                cc >= cols
-            ) {
-                continue;
-            }
+    if (rr < 0 || rr >= rows || cc < 0 || cc >= cols) {
+        continue;
+    }
 
-            const key = rr * cols + cc;
+    const key = rr * cols + cc;
 
-            if (visited[key]) {
-                continue;
-            }
+    if (visited[key]) {
+        continue;
+    }
 
-            visited[key] = 1;
+    visited[key] = 1;
 
-            cloneCell(
-                newGrid,
-                clonedRows,
-                rr,
-                cc
-            );
+    cloneCell(newGrid, clonedRows, rr, cc);
 
-            const cell =
-                newGrid[rr][cc];
+    const cell = newGrid[rr][cc];
 
-            if (
-                !cell.revealed &&
-                !cell.flagged
-            ) {
-                cell.revealed = true;
-                localRevealed++;
-            }
+    if (
+        !cell.revealed && !cell.flagged
+    ) {
+        cell.revealed = true;
+        localRevealed++;
+    }
 
-            if (cell.mine) {
+    if (cell.mine) {
 
-                for (let rr = 0; rr < rows; rr++) {
-                    for (let cc = 0; cc < cols; cc++) {
+        for (let rr = 0; rr < rows; rr++) {
+            for (let cc = 0; cc < cols; cc++) {
 
-                        if (newGrid[rr][cc].mine) {
-
-                            cloneCell(
-                                newGrid,
-                                clonedRows,
-                                rr,
-                                cc
-                            );
-
-                            newGrid[rr][cc].revealed = true;
-                        }
-                    }
-                }
-
-                set({
-                    grid: newGrid,
-                    gameOver: true,
-                    gameWon: false,
-                    timerActive: false,
-                    revealedCount: localRevealed,
-                });
-
-                return;
-            }
-
-            if (cell.adjacent === 0) {
-
-                for (let dr = -1; dr <= 1; dr++) {
-                    for (let dc = -1; dc <= 1; dc++) {
-
-                        queue.push([
-                            rr + dr,
-                            cc + dc,
-                        ]);
-                    }
+                if (newGrid[rr][cc].mine) {
+                    cloneCell(newGrid, clonedRows, rr, cc);
+                    newGrid[rr][cc].revealed = true;
                 }
             }
         }
 
-        const hasWon =
-            localRevealed ===
-            rows * cols - mines;
+        set({grid: newGrid, gameOver: true, gameWon: false, timerActive: false, revealedCount: localRevealed});
 
-        set({
-            grid: newGrid,
-            revealedCount: localRevealed,
-            gameWon: hasWon,
+        return;
+    }
+
+    if (cell.adjacent === 0) {
+
+        for (let dr = -1; dr <= 1; dr++) {
+            for (let dc = -1; dc <= 1; dc++) {
+
+                queue.push(rr + dr, cc + dc);
+            }
+        }
+    }
+}
+
+        const hasWon = localRevealed === rows * cols - mines;
+
+        set({grid: newGrid, revealedCount: localRevealed, gameWon: hasWon,
             timerActive: hasWon
                 ? false
                 : timerActive,
@@ -255,35 +210,19 @@ export const useMineStore = create((set, get) => ({
 
     toggleFlag: (r, c) => {
 
-        const {
-            grid,
-            gameOver,
-            flags,
-            revealedCount,
-            rows,
-            cols,
-            mines,
-            timerActive,
-        } = get();
+        const {grid, gameOver, flags, revealedCount, rows, cols, mines, timerActive} = get();
 
-        if (
-            gameOver ||
-            grid[r][c].revealed
-        ) {
+        if (gameOver || grid[r][c].revealed) {
             return;
         }
 
         const cell = grid[r][c];
 
-        if (
-            !cell.flagged &&
-            flags <= 0
-        ) {
+        if (!cell.flagged && flags <= 0) {
             return;
         }
 
         const newGrid = [...grid];
-
         newGrid[r] = [...newGrid[r]];
 
         newGrid[r][c] = {
@@ -291,19 +230,13 @@ export const useMineStore = create((set, get) => ({
             flagged: !cell.flagged,
         };
 
-        const nextFlags =
-            cell.flagged
+        const nextFlags = cell.flagged
                 ? flags + 1
                 : flags - 1;
 
-        const hasWon =
-            revealedCount ===
-            rows * cols - mines;
+        const hasWon = revealedCount === rows * cols - mines;
 
-        set({
-            grid: newGrid,
-            flags: nextFlags,
-            gameWon: hasWon,
+        set({grid: newGrid, flags: nextFlags, gameWon: hasWon,
             timerActive: hasWon
                 ? false
                 : timerActive,
@@ -311,8 +244,6 @@ export const useMineStore = create((set, get) => ({
     },
 
     tick: () => {
-        set((state) => ({
-            time: state.time + 1,
-        }));
+        set((state) => ({time: state.time + 1}));
     },
 }));

@@ -1,6 +1,8 @@
 "use client";
 
-import Game from "../../components/Minesweeper2";
+//import Game from "../../components/Minesweeper2";
+import Game from "../../components/Minesweeper";
+
 export default function HomePage() {
   return (
     <main className="relative overflow-hidden bg-black text-white">
