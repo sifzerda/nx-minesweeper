@@ -16,7 +16,7 @@
 
 ## Description
 
-This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app, using a zustand store. The highscores page and database of users was removed and styling was enhanced. Rust and Tauri were added to create a downloadable .exe. Responsive styling was enhanced to enable viewing and play on mobile devices.
+This is a rebuild and refactor of my first fullstack minesweeper game into a serverless Next.js app, using a zustand store. The highscores page and database of users was removed and styling was enhanced. Rust and Tauri were added to create a downloadable .exe. Responsive styling was enhanced to enable viewing and play on mobile devices. Performance was enhanced by separating components reducing re-renders and optimizing game logic.
 
 ## Badges
 
@@ -48,6 +48,20 @@ npm install
 
 # run server
 npm run start
+```
+
+Tauri commands:
+
+```bash
+# build
+npx tauri build
+
+# run
+npx tauri dev
+
+# generate app icons
+# 1. place 1024 x 1024 image in src-tauri folder:
+npx tauri icon src-tauri/IMAGENAME.jpg
 ```
 
 ## Tech
