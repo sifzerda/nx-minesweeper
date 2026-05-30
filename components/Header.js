@@ -69,11 +69,9 @@ export default function Header() {
         </div>
 
         {/* HAMBURGER */}
-        <button
-          ref={buttonRef}
-          className="md:hidden shrink-0 text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
-          onClick={() => setOpen((prev) => !prev)}
-        >
+        <button ref={buttonRef}
+          className="md:hidden shrink-0 min-w-[90px] text-center text-cyan-300 font-mono text-xs uppercase tracking-widest border border-cyan-500/30 px-3 py-2 cursor-pointer hover:border-cyan-400"
+          onClick={() => setOpen((prev) => !prev)}>
           {open ? "Close" : "Menu"}
         </button>
 
