@@ -65,7 +65,6 @@ export default function HomePage() {
   lg:w-auto
 ">
 
-
             <div className="mb-4 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.45em] text-cyan-500 text-center sm:text-left">
               terminal://minesweeper
             </div>
