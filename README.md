@@ -7,6 +7,7 @@
 - [Visuals](#visuals)
 - [Installation](#installation)
 - [Tech](#tech)
+- [Performance](#performance)
 - [Support](#support)
 - [Contributing](#contributing)
 - [Authors and Acknowledgment](#authors-and-acknowledgment)
@@ -58,6 +59,15 @@ npm run start
 - Webpack
 - Rust
 - Tauri
+
+## Performance
+
+Lighthouse scores:
+
+Performance: 55 ->
+Accessibility: 87 ->
+Best Practices: 100
+SEO: 100
 
 ## Support
 

@@ -24,12 +24,14 @@ const generateGrid = (rows, cols, mines) => {
 
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
+
             if (grid[r][c].mine) continue;
 
             let count = 0;
 
             for (let dr = -1; dr <= 1; dr++) {
                 for (let dc = -1; dc <= 1; dc++) {
+
                     const nr = r + dr;
                     const nc = c + dc;
 
@@ -53,6 +55,7 @@ const generateGrid = (rows, cols, mines) => {
 };
 
 const cloneCell = (grid, clonedRows, r, c) => {
+
     if (!clonedRows.has(r)) {
         grid[r] = [...grid[r]];
         clonedRows.add(r);
@@ -65,68 +68,96 @@ export const useMineStore = create((set, get) => ({
     rows: 8,
     cols: 8,
     mines: 10,
+
     grid: [],
+
     gameOver: false,
+    gameWon: false,
+
     time: 0,
     timerActive: false,
+
     flags: 10,
     revealedCount: 0,
 
     initialize: (rows, cols, mines) => {
+
         set({
             rows,
             cols,
             mines,
+
             flags: mines,
+
             gameOver: false,
+            gameWon: false,
+
             time: 0,
             timerActive: false,
+
+            revealedCount: 0,
+
             grid: generateGrid(rows, cols, mines),
         });
     },
 
     reset: (rows, cols, mines) => {
+
         set({
             rows,
             cols,
             mines,
+
             flags: mines,
+
             gameOver: false,
+            gameWon: false,
+
             time: 0,
             timerActive: false,
+
             revealedCount: 0,
+
             grid: generateGrid(rows, cols, mines),
         });
     },
 
     reveal: (r, c) => {
+
         const {
             grid,
             gameOver,
             rows,
             cols,
+            mines,
             timerActive,
+            revealedCount,
         } = get();
-
-        let localRevealed = get().revealedCount;
 
         if (
             gameOver ||
             grid[r][c].revealed ||
             grid[r][c].flagged
-        ) return;
+        ) {
+            return;
+        }
 
         if (!timerActive) {
             set({ timerActive: true });
         }
 
+        let localRevealed = revealedCount;
+
         const newGrid = [...grid];
         const clonedRows = new Set();
-        const visited = new Set();
+
+        const visited =
+            new Uint8Array(rows * cols);
 
         const queue = [[r, c]];
 
         while (queue.length) {
+
             const [rr, cc] = queue.pop();
 
             if (
@@ -134,17 +165,32 @@ export const useMineStore = create((set, get) => ({
                 rr >= rows ||
                 cc < 0 ||
                 cc >= cols
-            ) continue;
+            ) {
+                continue;
+            }
 
             const key = rr * cols + cc;
-            if (visited.has(key)) continue;
-            visited.add(key);
 
-            cloneCell(newGrid, clonedRows, rr, cc);
+            if (visited[key]) {
+                continue;
+            }
 
-            const cell = newGrid[rr][cc];
+            visited[key] = 1;
 
-            if (!cell.revealed && !cell.flagged) {
+            cloneCell(
+                newGrid,
+                clonedRows,
+                rr,
+                cc
+            );
+
+            const cell =
+                newGrid[rr][cc];
+
+            if (
+                !cell.revealed &&
+                !cell.flagged
+            ) {
                 cell.revealed = true;
                 localRevealed++;
             }
@@ -155,7 +201,14 @@ export const useMineStore = create((set, get) => ({
                     for (let cc = 0; cc < cols; cc++) {
 
                         if (newGrid[rr][cc].mine) {
-                            cloneCell(newGrid, clonedRows, rr, cc);
+
+                            cloneCell(
+                                newGrid,
+                                clonedRows,
+                                rr,
+                                cc
+                            );
+
                             newGrid[rr][cc].revealed = true;
                         }
                     }
@@ -164,62 +217,102 @@ export const useMineStore = create((set, get) => ({
                 set({
                     grid: newGrid,
                     gameOver: true,
+                    gameWon: false,
                     timerActive: false,
-                    revealedCount: localRevealed
+                    revealedCount: localRevealed,
                 });
 
                 return;
             }
 
             if (cell.adjacent === 0) {
+
                 for (let dr = -1; dr <= 1; dr++) {
                     for (let dc = -1; dc <= 1; dc++) {
-                        queue.push([rr + dr, cc + dc]);
+
+                        queue.push([
+                            rr + dr,
+                            cc + dc,
+                        ]);
                     }
                 }
             }
         }
 
+        const hasWon =
+            localRevealed ===
+            rows * cols - mines;
+
         set({
             grid: newGrid,
-            revealedCount: localRevealed
+            revealedCount: localRevealed,
+            gameWon: hasWon,
+            timerActive: hasWon
+                ? false
+                : timerActive,
         });
     },
 
     toggleFlag: (r, c) => {
-        const { grid, gameOver, flags, rows, cols, mines, timerActive } = get();
-        if (gameOver || grid[r][c].revealed) return;
+
+        const {
+            grid,
+            gameOver,
+            flags,
+            revealedCount,
+            rows,
+            cols,
+            mines,
+            timerActive,
+        } = get();
+
+        if (
+            gameOver ||
+            grid[r][c].revealed
+        ) {
+            return;
+        }
+
         const cell = grid[r][c];
-        if (!cell.flagged && flags <= 0) return;
+
+        if (
+            !cell.flagged &&
+            flags <= 0
+        ) {
+            return;
+        }
+
         const newGrid = [...grid];
+
         newGrid[r] = [...newGrid[r]];
+
         newGrid[r][c] = {
             ...newGrid[r][c],
             flagged: !cell.flagged,
         };
 
-        const isAddingFlag = !cell.flagged;
-        const nextFlags = isAddingFlag ? flags - 1 : flags + 1;
-        const totalCells = rows * cols;
-        let revealedCount = 0;
+        const nextFlags =
+            cell.flagged
+                ? flags + 1
+                : flags - 1;
 
-        for (const row of newGrid) {
-            for (const cell of row) {
-                if (cell.revealed) revealedCount++;
-            }
-        }
-
-        const hasWon = revealedCount === totalCells - mines;
+        const hasWon =
+            revealedCount ===
+            rows * cols - mines;
 
         set({
             grid: newGrid,
             flags: nextFlags,
-            revealedCount,
-            gameOver: hasWon,
-            timerActive: hasWon ? false : timerActive,
+            gameWon: hasWon,
+            timerActive: hasWon
+                ? false
+                : timerActive,
         });
     },
+
     tick: () => {
-        set((state) => ({ time: state.time + 1 }));
+        set((state) => ({
+            time: state.time + 1,
+        }));
     },
 }));
