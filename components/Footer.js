@@ -1,4 +1,5 @@
 // components/Footer.js
+
 "use client";
 
 export default function Footer() {

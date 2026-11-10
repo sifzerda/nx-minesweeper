@@ -1,108 +1,12 @@
 "use client";
 
-//import Game from "../../components/Minesweeper2";
-import Game from "../../components/Minesweeper";
+import Minesweeper from "../../components/Minesweeper.jsx";
 
 export default function HomePage() {
   return (
-    <main className="relative overflow-hidden bg-black text-white">
-      {/* Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.12),transparent_30%),radial-gradient(circle_at_80%_30%,rgba(59,130,246,0.12),transparent_35%),radial-gradient(circle_at_50%_80%,rgba(16,185,129,0.08),transparent_40%)]" />
-
-        <div className="absolute left-[10%] top-[15%] h-40 w-40 sm:h-72 sm:w-72 rounded-full bg-cyan-500/10 blur-[120px]" />
-        <div className="absolute right-[12%] top-[20%] h-52 w-52 sm:h-80 sm:w-80 rounded-full bg-blue-500/10 blur-[140px]" />
-        <div className="absolute bottom-[10%] left-[35%] h-60 w-60 sm:h-96 sm:w-96 rounded-full bg-cyan-400/5 blur-[180px]" />
-
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-size[80px_80px] opacity-20" />
-
-        <div className="absolute inset-0 opacity-[0.04] mix-blend-screen">
-          <div className="h-full w-full bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(255,255,255,0.08)_3px)]" />
-        </div>
-      </div>
-
-      {/* Main */}
-      <div className="relative z-10 flex items-center justify-center px-0 sm:px-2 py-1">
-        <div className="
-  relative
-  mx-auto
-  flex
-  w-full
-  min-w-0
-  max-w-7xl
-  flex-col-reverse
-  lg:flex-row
-  items-center
-  justify-between
-  gap-4 sm:gap-6 lg:gap-16
-  overflow-hidden
-  rounded-3xl sm:rounded-4xl lg:rounded-[40px]
-  border border-cyan-500/20
-  bg-black/50
-  p-2 sm:p-3 lg:p-10
-  shadow-[0_0_100px_rgba(34,211,238,0.12)]
-  backdrop-blur-2xl
-">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(6,182,212,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(6,182,212,0.04)_1px,transparent_1px)] bg-size[40px_40px] opacity-30" />
-
-          <div className="absolute left-0 top-0 h-1 w-full bg-linear-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_25px_rgba(34,211,238,0.9)]" />
-          <div className="absolute bottom-0 left-0 h-1 w-full bg-linear-to-r from-transparent via-blue-500 to-transparent shadow-[0_0_25px_rgba(59,130,246,0.9)]" />
-
-          {/* Minesweeper */}
-          <div className="
-  relative
-  w-full
-  min-w-0
-  overflow-hidden
-  rounded-[18px] sm:rounded-[28px]
-  border border-cyan-500/30
-  bg-black/90
-  px-0 py-3
-  sm:px-4 sm:py-5
-  lg:px-8 lg:py-6
-  shadow-[0_0_60px_rgba(34,211,238,0.22)]
-  backdrop-blur-xl
-  lg:w-auto
-">
-
-            <div className="mb-4 font-mono text-[8px] sm:text-[10px] uppercase tracking-[0.25em] sm:tracking-[0.45em] text-cyan-500 text-center sm:text-left">
-              terminal://minesweeper
-            </div>
-
-            <Game />
-          </div>
-
-          {/* Text */}
-          <div className="relative flex-1 overflow-hidden text-center lg:text-right w-full">
-
-            {/* STATUS CLUSTER (updated lights) */}
-            <div className="mb-6 sm:mb-8 inline-flex flex-col items-center lg:items-end gap-2">
-
-            </div>
-
-            <div className="absolute right-0 top-0 hidden lg:block h-0.5 w-40 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.9)]" />
-            <div className="absolute bottom-0 left-0 hidden lg:block h-0.5 w-52 bg-blue-500 shadow-[0_0_20px_rgba(59,130,246,0.9)]" />
-
-            <div className="uppercase leading-none">
-
-              <p className="font-mono text-xs sm:text-sm tracking-[0.25em] sm:tracking-[0.5em] text-cyan-400/90 mb-1">
-                interface online
-              </p>
-
-              <h1 className="glitch-text font-light tracking-[-0.08em] leading-[0.85] 
-    text-[2rem] sm:text-[2.4rem] md:text-[3.2rem] lg:text-[4.2rem] xl:text-[5rem]">
-                cybernetic
-              </h1>
-
-              <h1 className="glitch-text font-light tracking-[-0.08em] leading-[0.85] opacity-70 
-    text-[1.5rem] sm:text-[1.8rem] md:text-[2.6rem] lg:text-[3.8rem] xl:text-[4.5rem] 
-    -mt-[0.15em] sm:-mt-[0.2em] md:-mt-[0.2em] lg:-mt-[0.2em]">
-                terminal
-              </h1>
-
-            </div>
-          </div>
-        </div>
+    <main className="flex min-h-screen items-start justify-center bg-zinc-950 px-4 py-10 text-white">
+      <div className="w-full max-w-7xl">
+        <Minesweeper />
       </div>
     </main>
   );

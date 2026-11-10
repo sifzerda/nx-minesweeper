@@ -1,245 +1,204 @@
+// components/useMineStore.js
+
 import { create } from "zustand";
 
-const generateGrid = (rows, cols, mines) => {
-    const grid = Array.from({ length: rows }, () =>
-        Array.from({ length: cols }, () => ({
-            revealed: false,
-            flagged: false,
-            mine: false,
-            adjacent: 0,
-        }))
-    );
+import {
+  DIFFICULTIES,
+  createGrid,
+  getNeighbors,
+  placeMines,
+  revealCells,
+  chordReveal,
+  revealAllMines,
+} from "./lib/minesweeper";
 
-    let placed = 0;
+import { createGridTransaction } from "./lib/gridTransaction";
 
-    while (placed < mines) {
-        const r = Math.floor(Math.random() * rows);
-        const c = Math.floor(Math.random() * cols);
+const DEFAULT_DIFFICULTY = "beginner";
 
-        if (!grid[r][c].mine) {
-            grid[r][c].mine = true;
-            placed++;
-        }
-    }
+function createGame(difficulty) {
+  const config = DIFFICULTIES[difficulty];
 
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
+  return {
+    difficulty,
+    ...config,
 
-            if (grid[r][c].mine) continue;
+    grid: createGrid(config.rows, config.cols),
 
-            let count = 0;
+    status: "ready",
+    minesPlaced: false,
 
-            for (let dr = -1; dr <= 1; dr++) {
-                for (let dc = -1; dc <= 1; dc++) {
-
-                    const nr = r + dr;
-                    const nc = c + dc;
-
-                    if (
-                        nr >= 0 &&
-                        nr < rows &&
-                        nc >= 0 &&
-                        nc < cols &&
-                        grid[nr][nc].mine
-                    ) {
-                        count++;
-                    }
-                }
-            }
-
-            grid[r][c].adjacent = count;
-        }
-    }
-
-    return grid;
-};
-
-const cloneCell = (grid, clonedRows, r, c) => {
-
-    if (!clonedRows.has(r)) {
-        grid[r] = [...grid[r]];
-        clonedRows.add(r);
-    }
-
-    grid[r][c] = { ...grid[r][c] };
-};
-
-export const useMineStore = create((set, get) => ({
-    rows: 8,
-    cols: 8,
-    mines: 10,
-
-    grid: [],
-
-    gameOver: false,
-    gameWon: false,
-
-    time: 0,
-    timerActive: false,
-
-    flags: 10,
+    flags: 0,
     revealedCount: 0,
 
-    initialize: (rows, cols, mines) => {
-
-        set({
-            rows,
-            cols,
-            mines,
-
-            flags: mines,
-
-            gameOver: false,
-            gameWon: false,
-
-            time: 0,
-            timerActive: false,
-
-            revealedCount: 0,
-
-            grid: generateGrid(rows, cols, mines),
-        });
-    },
-
-    reset: (rows, cols, mines) => {
-
-        set({
-            rows,
-            cols,
-            mines,
-
-            flags: mines,
-
-            gameOver: false,
-            gameWon: false,
-
-            time: 0,
-            timerActive: false,
-
-            revealedCount: 0,
-
-            grid: generateGrid(rows, cols, mines),
-        });
-    },
-
-    reveal: (r, c) => {
-
-        const {grid, gameOver, rows, cols, mines, timerActive, revealedCount} = get();
-
-        if (gameOver || grid[r][c].revealed || grid[r][c].flagged) {
-            return;
-        }
-
-        if (!timerActive) {
-            set({ timerActive: true });
-        }
-
-        let localRevealed = revealedCount;
-
-        const newGrid = [...grid];
-        const clonedRows = new Set();
-
-        const visited = new Uint8Array(rows * cols);
-
-const queue = [r, c];
-
-while (queue.length) {
-
-    const cc = queue.pop();
-    const rr = queue.pop();
-
-    if (rr < 0 || rr >= rows || cc < 0 || cc >= cols) {
-        continue;
-    }
-
-    const key = rr * cols + cc;
-
-    if (visited[key]) {
-        continue;
-    }
-
-    visited[key] = 1;
-
-    cloneCell(newGrid, clonedRows, rr, cc);
-
-    const cell = newGrid[rr][cc];
-
-    if (
-        !cell.revealed && !cell.flagged
-    ) {
-        cell.revealed = true;
-        localRevealed++;
-    }
-
-    if (cell.mine) {
-
-        for (let rr = 0; rr < rows; rr++) {
-            for (let cc = 0; cc < cols; cc++) {
-
-                if (newGrid[rr][cc].mine) {
-                    cloneCell(newGrid, clonedRows, rr, cc);
-                    newGrid[rr][cc].revealed = true;
-                }
-            }
-        }
-
-        set({grid: newGrid, gameOver: true, gameWon: false, timerActive: false, revealedCount: localRevealed});
-
-        return;
-    }
-
-    if (cell.adjacent === 0) {
-
-        for (let dr = -1; dr <= 1; dr++) {
-            for (let dc = -1; dc <= 1; dc++) {
-
-                queue.push(rr + dr, cc + dc);
-            }
-        }
-    }
+    time: 0,
+  };
 }
 
-        const hasWon = localRevealed === rows * cols - mines;
+function finishReveal(state, tx, result) {
+  const revealedCount =
+    state.revealedCount + result.revealed;
 
-        set({grid: newGrid, revealedCount: localRevealed, gameWon: hasWon,
-            timerActive: hasWon
-                ? false
-                : timerActive,
-        });
-    },
+  if (result.hitMine) {
+    revealAllMines(tx);
 
-    toggleFlag: (r, c) => {
+    return {
+      grid: tx.grid,
+      revealedCount,
+      minesPlaced: true,
+      status: "lost",
+    };
+  }
 
-        const {grid, gameOver, flags, revealedCount, rows, cols, mines, timerActive} = get();
+  const won =
+    revealedCount ===
+    state.rows * state.cols - state.mines;
 
-        if (gameOver || grid[r][c].revealed) {
-            return;
-        }
+  return {
+    grid: tx.grid,
+    revealedCount,
+    minesPlaced: true,
+    status: won ? "won" : "playing",
+  };
+}
 
-        const cell = grid[r][c];
+function isValidCell(state, r, c) {
+  return (
+    Number.isInteger(r) &&
+    Number.isInteger(c) &&
+    r >= 0 &&
+    c >= 0 &&
+    r < state.rows &&
+    c < state.cols
+  );
+}
 
-        if (!cell.flagged && flags <= 0) {
-            return;
-        }
+export const useMineStore = create((set) => ({
+  ...createGame(DEFAULT_DIFFICULTY),
 
-        const newGrid = [...grid];
-        newGrid[r] = [...newGrid[r]];
+  reset: () =>
+    set((state) => createGame(state.difficulty)),
 
-        newGrid[r][c] = {
-            ...newGrid[r][c],
-            flagged: !cell.flagged,
-        };
+  setDifficulty: (difficulty) => {
+    if (!DIFFICULTIES[difficulty]) return;
 
-        const nextFlags = cell.flagged
-                ? flags + 1
-                : flags - 1;
+    set(createGame(difficulty));
+  },
 
-        const hasWon = revealedCount === rows * cols - mines;
+  reveal: (r, c) =>
+    set((state) => {
+      if (
+        !isValidCell(state, r, c) ||
+        state.status === "won" ||
+        state.status === "lost"
+      ) {
+        return state;
+      }
 
-        set({grid: newGrid, flags: nextFlags, gameWon: hasWon, timerActive: hasWon ? false : timerActive});
-    },
+      const cell = state.grid[r][c];
 
-    tick: () => {
-        set((state) => ({time: state.time + 1}));
-    },
+      if (cell.revealed || cell.flagged) return state;
+
+      const tx = createGridTransaction(state.grid);
+
+      if (!state.minesPlaced) {
+        placeMines(tx, state.mines, r, c);
+      }
+
+      const result = revealCells(tx, [[r, c]]);
+
+      return finishReveal(state, tx, result);
+    }),
+
+  chord: (r, c) =>
+    set((state) => {
+      if (
+        state.status !== "playing" ||
+        !isValidCell(state, r, c)
+      ) {
+        return state;
+      }
+
+      const cell = state.grid[r][c];
+
+      if (
+        !cell.revealed ||
+        cell.mine ||
+        cell.adjacent === 0
+      ) {
+        return state;
+      }
+
+      const neighbors = getNeighbors(
+        r,
+        c,
+        state.rows,
+        state.cols
+      );
+
+      const flaggedCount = neighbors.reduce(
+        (count, [nr, nc]) =>
+          count + Number(state.grid[nr][nc].flagged),
+        0
+      );
+
+      if (flaggedCount !== cell.adjacent) {
+        return state;
+      }
+
+      const hasTargets = neighbors.some(([nr, nc]) => {
+        const neighbor = state.grid[nr][nc];
+
+        return !neighbor.revealed && !neighbor.flagged;
+      });
+
+      if (!hasTargets) return state;
+
+      const tx = createGridTransaction(state.grid);
+
+      const result = chordReveal(tx, r, c);
+
+      if (!tx.changed) return state;
+
+      return finishReveal(state, tx, result);
+    }),
+
+  toggleFlag: (r, c) =>
+    set((state) => {
+      if (
+        !isValidCell(state, r, c) ||
+        state.status === "won" ||
+        state.status === "lost"
+      ) {
+        return state;
+      }
+
+      const cell = state.grid[r][c];
+
+      if (cell.revealed) return state;
+
+      if (!cell.flagged && state.flags >= state.mines) {
+        return state;
+      }
+
+      const tx = createGridTransaction(state.grid);
+
+      tx.write(r, c, {
+        flagged: !cell.flagged,
+      });
+
+      return {
+        grid: tx.grid,
+        flags: state.flags + (cell.flagged ? -1 : 1),
+      };
+    }),
+
+  tick: () =>
+    set((state) => {
+      if (state.status !== "playing" || state.time >= 999) {
+        return state;
+      }
+
+      return { time: state.time + 1 };
+    }),
 }));
